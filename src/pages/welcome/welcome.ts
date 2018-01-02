@@ -31,7 +31,9 @@ export class WelcomePage {
       (res) => {
         if (res != null) {
           this.gdata.sheet = JSON.parse(res);
-          this.backend.loadDataSync().then(() => {
+          let methods = [ this.gdata.GC.LOAD_MEMBERS,this.gdata.GC.LOAD_ENTRIES,this.gdata.GC.LOAD_REPORT];
+          this.backend.loadDataParaller(methods).then(res => {
+            console.log(res);
             this.navCtrl.push(TabsPage)
           }).catch((err) => {
             if (err.status == 401) {
@@ -54,12 +56,12 @@ export class WelcomePage {
         console.log(err);
         console.log(gdata.sheet);
       }
-    ).catch(e=>{
+    ).catch(e => {
       this.showError("Cant connect to Local Storage");
       console.log(e);
-      
+
     })
-    ;
+      ;
 
   }
 

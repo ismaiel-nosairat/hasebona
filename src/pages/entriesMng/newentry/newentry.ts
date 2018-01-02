@@ -222,9 +222,10 @@ export class NewentryPage {
     console.log(myEntry);
     this.backend.newEntry(myEntry).subscribe(
       res => {
-        this.backend.loadDataSync().then(
+        let methods = [this.gdata.GC.LOAD_ENTRIES,this.gdata.GC.LOAD_REPORT];
+        this.backend.loadDataParaller(methods).then(
           (res) => {
-            this.navCtrl.setRoot(EntriesPage);    
+            this.navCtrl.setRoot(EntriesPage);
           },
           (err) => {
             console.log('errrrrrrrrrrrrrrrrror' + err);

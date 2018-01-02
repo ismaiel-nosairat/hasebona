@@ -38,14 +38,7 @@ export class MembersPage {
 
 
   ionViewWillEnter(){
-    setTimeout(() => {
-      console.log("alo");  
-    }, 5000);
-    let x=1;
-    for(let i=0;i<10000000;i++){
-      x++
-    };
-    console.log("Heeeeeeeeeeeeeeeeee"+x);
+    
   }
  
 
@@ -112,7 +105,7 @@ private addMember() {
       text: "ADD",
       handler: res => {
         console.log(res.member.trim());
-        if (res.member.trim().length > 3 && res.member.trim().length < 33) {
+        if (res.member.trim().length > 0 && res.member.trim().length < 50) {
           //this._addBrand(data.brandNname)
           this.showLoading();
           this.backend.newMember(res.member.trim()).subscribe(

@@ -27,10 +27,10 @@ export class SigninPage {
   }
   loading: Loading;
   signinForm: FormGroup;
-  constructor(private backend: BackendProvider, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private storage: Storage,private gdata: GlobaldataProvider,private fb: FormBuilder) {
+  constructor(private backend: BackendProvider, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private storage: Storage, private gdata: GlobaldataProvider, private fb: FormBuilder) {
     this.signinForm = fb.group({
       'id': [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)])],
-      'password': [null, Validators.compose([Validators.required,Validators.minLength(3), Validators.maxLength(50) ])]
+      'password': [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])]
     });
   }
 
@@ -39,35 +39,38 @@ export class SigninPage {
   }
   signin(value) {
     this.showLoading();
-    let login={
-      id:value.id,
-      password:value.password
+    let login = {
+      id: value.id,
+      password: value.password
     };
     this.backend.signin(login).subscribe(
       (value) => {
         console.log(value.text());
         //this.storage.set("sheet", JSON.stringify(value.text()));
         this.storage.set("sheet", value.text());
-        this.gdata.sheet =JSON.parse(value.text());
-        this.backend.loadDataSync().then(()=>{
+        this.gdata.sheet = JSON.parse(value.text());
+
+        let methods = [ this.gdata.GC.LOAD_MEMBERS,this.gdata.GC.LOAD_ENTRIES,this.gdata.GC.LOAD_REPORT];
+        this.backend.loadDataParaller(methods).then(res => {
+          this.loading.dismiss();
           this.navCtrl.setRoot(TabsPage);
-        }).catch((err)=>{
-          this.showFatalError("Error while contacting Server");
-        })
-        ;
-        
+        },
+          (err) => {
+            this.showFatalError(err);
+          }
+        ).catch(e => this.showError(e));
       },
       (err) => {
-        let x=JSON.stringify(err)
+        let x = JSON.stringify(err)
         console.log(x);
         console.log(err.status);
-        if (err.status==401){
+        if (err.status == 401) {
           this.showFatalError("Wrong id or password");
         }
-        else{
-        this.showFatalError("Error while contacting Server");
+        else {
+          this.showFatalError("Error while contacting Server");
         }
-        
+
       }
     )
 
@@ -88,11 +91,11 @@ export class SigninPage {
     this.loading.dismiss();
     console.log("To display alert");
     let msg;
-    if (text.status=== 404){
-      msg="Not Found";
+    if (text.status === 404) {
+      msg = "Not Found";
     }
     else
-    msg=text;
+      msg = text;
     let alert = this.alertCtrl.create({
       title: 'Fail',
       subTitle: msg,
@@ -105,14 +108,14 @@ export class SigninPage {
     console.log(text);
     this.loading.dismiss();
     console.log("To display alert");
-    let msg=text;
+    let msg = text;
     let alert = this.alertCtrl.create({
       title: 'Fail',
       subTitle: msg,
       buttons: ['OK']
     });
     alert.present();
-  }  
+  }
 
 
 }

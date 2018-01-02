@@ -1,97 +1,99 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Chart } from 'chart.js';
- 
+import { BackendProvider } from '../../providers/backend/backend';
+import { AlertController, LoadingController, Loading } from 'ionic-angular';
+import { GlobaldataProvider } from '../../providers/globaldata/globaldata';
+
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+    selector: 'page-home',
+    templateUrl: 'home.html'
 })
 export class HomePage {
- 
+
     @ViewChild('barCanvas') barCanvas;
-    @ViewChild('doughnutCanvas') doughnutCanvas;
+    @ViewChild('creditorsCanvas') creditorsCanvas;
+    @ViewChild('debtorsCanvas') debtorsCanvas;
     @ViewChild('lineCanvas') lineCanvas;
- 
+
     barChart: any;
-    doughnutChart: any;
+    creditorsChart: any;
+    debtorsChart: any;
     lineChart: any;
- 
-    constructor(public navCtrl: NavController) {
- 
+    loading: Loading;
+    report: any;
+    creditors: any[] = [];
+    debtors: any[] = [];
+    creditorsBalance: any[] = [];
+    debtorsBalance: any[] = [];
+
+
+
+
+    constructor(
+        public navCtrl: NavController,
+        backend: BackendProvider,
+        gdata:GlobaldataProvider,
+        private loadingCtrl: LoadingController,
+        private alertCtrl: AlertController) {
+
+
+        this.report = gdata.report;
+        console.log(this.report);
+        this.creditors = gdata.creditors;
+        this.debtors = gdata.debtors;
+        this.creditorsBalance = gdata.creditorsBalance;
+        this.debtorsBalance = gdata.debtorsBalance;
     }
- 
+
     ionViewDidLoad() {
- 
-        this.barChart = new Chart(this.barCanvas.nativeElement, {
- 
-            type: 'bar',
+
+        
+        this.creditorsChart = new Chart(this.creditorsCanvas.nativeElement, {
+            //Math.floor(Math.random() * (255 - 50 + 1)) + 50
+            type: 'doughnut',
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: this.creditors,
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
+                    label: 'Oqlaa',
+                    data: this.creditorsBalance,
+                    backgroundColor:'rgba(255, 99, 132, 0.8)',
+                    hoverBackgroundColor:'#FF6384'
+                    
+                }]
+            },
+            
+            options: {
+                legend: {
+                    display: true,
+                    position:'left'
+                }}            
+            
+
+        });
+
+        this.debtorsChart = new Chart(this.debtorsCanvas.nativeElement, {
+            //Math.floor(Math.random() * (255 - 50 + 1)) + 50
+            type: 'doughnut',
+            data: {
+                labels: this.debtors,
+                datasets: [{
+                    label: 'Oqlaa',
+                    data: this.debtorsBalance,
+                    backgroundColor:'rgba(54, 162, 235, 0.6',
+                    hoverBackgroundColor:'#36A2EB'
                 }]
             },
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
- 
+                legend: {
+                    display: true,
+                    position:'left'
+                }}            
         });
- 
-        this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
- 
-            type: 'doughnut',
-            data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                datasets: [{
-                    label: 'Oqlaa',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56",
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ]
-                }]
-            }
- 
-        });
- 
+
+        
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
- 
+
             type: 'line',
             data: {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -120,10 +122,49 @@ export class HomePage {
                     }
                 ]
             }
- 
+
         });
- 
+
     }
- 
- 
+
+
+
+
+
+
+    showLoading() {
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...',
+            dismissOnPageChange: true
+        });
+        this.loading.present();
+    }
+
+
+
+
+
+
+
+
+    showError(text) {
+        console.log("To stop and show errro");
+        this.loading.dismiss();
+        console.log("To display alert");
+        let msg;
+        if (text.status === 404) {
+            msg = "Not Found";
+        }
+        else
+            msg = text;
+        let alert = this.alertCtrl.create({
+            title: 'Fail',
+            subTitle: msg,
+            buttons: ['OK']
+        });
+        alert.present();
+    }
+
+
+
 }

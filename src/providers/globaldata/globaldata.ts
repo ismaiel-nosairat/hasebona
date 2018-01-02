@@ -15,14 +15,23 @@ export class GlobaldataProvider {
   members:any[];
   entries:any[];
   report:any;
+  creditors:any[]=[];
+  debtors:any[]=[];
+  creditorsBalance:any[]=[];
+  debtorsBalance:any[]=[];
 
   membersLoadingIsDone;
   entriesLoadingIsDone;
+  GC:any;
   constructor(public http: Http) {
     console.log('Hello GlobaldataProvider Provider');
       this.membersLoadingIsDone=false;
       this.entriesLoadingIsDone=false;
-      
+      this.GC={
+        LOAD_MEMBERS:'LOAD_MEMBERS',
+        LOAD_ENTRIES:'LOAD_ENTRIES',
+        LOAD_REPORT:'LOAD_REPORT'
+      };
 
   }
 
