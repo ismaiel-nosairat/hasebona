@@ -325,17 +325,25 @@ export class BackendProvider {
           this.gdata.report = JSON.parse(val.text());
           let index=0;
           let report=this.gdata.report;
+          let creditors:any[]=[];
+          let debtors:any[]=[];
+          let creditorsBalance:any[]=[];
+          let debtorsBalance:any[]=[];
           report.members.forEach(m=>{
             if (report.balances[index]>0){
-              this.gdata.creditors.push(m);
-              this.gdata.creditorsBalance.push(report.balances[index]);
+              creditors.push(m);
+              creditorsBalance.push(report.balances[index]);
             }
             else if (report.balances[index]<0){
-              this.gdata.debtors.push(m);
-              this.gdata.debtorsBalance.push(report.balances[index]);
+              debtors.push(m);
+              debtorsBalance.push(report.balances[index]);
             }
             index++;
           });
+          this.gdata.creditors=creditors
+          this.gdata.debtors=debtors;
+          this.gdata.creditorsBalance=creditorsBalance;
+          this.gdata.debtorsBalance=debtorsBalance;
           console.log(this.gdata.report);
           console.log(this.gdata.creditors);
           console.log(this.gdata.creditorsBalance);
@@ -353,5 +361,53 @@ export class BackendProvider {
       );
     });
   }
+
+  loadReportOnlyWithPromise1(): Promise<any> {
+    let url = this.serverhost + this.reportUri;
+    return new Promise((resolve, reject) => {
+
+      this.http.post(url, this.gdata.sheet, this.options).subscribe(
+        (val) => {
+          this.gdata.report = JSON.parse(val.text());
+          let index=0;
+          let report=this.gdata.report;
+          let creditors:any[]=[];
+          let debtors:any[]=[];
+          let creditorsBalance:any[]=[];
+          let debtorsBalance:any[]=[];
+          report.members.forEach(m=>{
+            if (report.balances[index]>0){
+              creditors.push(m);
+              creditorsBalance.push(report.balances[index]);
+            }
+            else if (report.balances[index]<0){
+              debtors.push(m);
+              debtorsBalance.push(report.balances[index]);
+            }
+            index++;
+          });
+          this.gdata.creditors=creditors
+          this.gdata.debtors=debtors;
+          this.gdata.creditorsBalance=creditorsBalance;
+          this.gdata.debtorsBalance=debtorsBalance;
+          console.log(this.gdata.report);
+          console.log(this.gdata.creditors);
+          console.log(this.gdata.creditorsBalance);
+          console.log(this.gdata.debtors);
+          console.log(this.gdata.debtorsBalance);
+          
+          
+          
+          resolve("Done report");
+        },
+        (err) => {
+          console.log("Error in loadReportOnlyWithPromise");
+          reject(err);
+        }
+      );
+    });
+  }
+
+
 
 } 

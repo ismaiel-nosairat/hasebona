@@ -21,33 +21,44 @@ export class HomePage {
     debtorsChart: any;
     lineChart: any;
     loading: Loading;
-    report: any;
-    creditors: any[] = [];
-    debtors: any[] = [];
-    creditorsBalance: any[] = [];
-    debtorsBalance: any[] = [];
+        report: any;
+        creditors: any[] = [];
+        debtors: any[] = [];
+        creditorsBalance: any[] = [];
+        debtorsBalance: any[] = [];
 
 
 
 
-    constructor(
-        public navCtrl: NavController,
-        backend: BackendProvider,
-        gdata:GlobaldataProvider,
-        private loadingCtrl: LoadingController,
-        private alertCtrl: AlertController) {
+        constructor(
+            public navCtrl: NavController,
+            private backend: BackendProvider,
+            private gdata:GlobaldataProvider,
+            private loadingCtrl: LoadingController,
+            private alertCtrl: AlertController) {
 
 
-        this.report = gdata.report;
-        console.log(this.report);
-        this.creditors = gdata.creditors;
-        this.debtors = gdata.debtors;
-        this.creditorsBalance = gdata.creditorsBalance;
-        this.debtorsBalance = gdata.debtorsBalance;
+            this.report = gdata.report;
+            console.log(this.report);
+            this.creditors = gdata.creditors;
+            this.debtors = gdata.debtors;
+            this.creditorsBalance = gdata.creditorsBalance;
+            this.debtorsBalance = gdata.debtorsBalance;
+        }
+
+        ionViewWillEnter(){
+            
+            console.log('to refresh');
+            this.creditorsChart.labels=(this.gdata.creditors);
+            this.creditorsChart.data.datasets.forEach((dataset) => {
+                    dataset.data=this.gdata.creditorsBalance;
+                });
+
+            
+        this.creditorsChart.update();
     }
-
     ionViewDidLoad() {
-
+        console.log('ionViewDidLoad');    
         
         this.creditorsChart = new Chart(this.creditorsCanvas.nativeElement, {
             //Math.floor(Math.random() * (255 - 50 + 1)) + 50
@@ -165,6 +176,16 @@ export class HomePage {
         alert.present();
     }
 
+    doRefresh(refresher) {
+        console.log('Begin async operation', refresher);
+    
+        setTimeout(() => {
+          console.log('Async operation has ended');
+          refresher.complete();
+        }, 2000);
+      }
 
+
+    
 
 }
