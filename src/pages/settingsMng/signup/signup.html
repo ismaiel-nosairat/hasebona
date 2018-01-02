@@ -1,0 +1,42 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+    
+            <ion-list>
+              <form (ngSubmit)="signup()">
+              <ion-item>
+                <ion-label>Name:</ion-label>
+                <ion-input fixed [(ngModel)]="sheet.name" name="name" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Password:</ion-label>
+                  <ion-input fixed [(ngModel)]="sheet.password" name="password" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Admin Password:</ion-label>
+                    <ion-input fixed [(ngModel)]="sheet.adminPassword" name="adminPassword" type="text"></ion-input>
+                  </ion-item>
+              <ion-item>
+                  
+                  <button type="submit" block    ion-button >Save</button>
+                  </ion-item>
+              </form> 
+            </ion-list>
+    
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+    
+    </ion-content>

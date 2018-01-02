@@ -1,0 +1,28 @@
+<!--
+  Generated template for the MembersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Members</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <button ion-item *ngFor="let item of members" (click)="showMemberDetails(item)">
+          {{item.name}}
+        </button>  
+      </ion-list>
+    
+      
+      <ion-fab right bottom>
+        <button [disabled]="gdata.sheet.password == ''"  (click)="addMember()" ion-fab style="margin-right:20px; margin-bottom :20px" color="positive" ><ion-icon name="add"></ion-icon></button>
+      </ion-fab>
+   
+</ion-content>

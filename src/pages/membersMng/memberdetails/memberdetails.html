@@ -1,0 +1,40 @@
+<!--
+  Generated template for the MemberdetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{member.name}} Entries</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card ion-item *ngFor="let item of entries">
+
+        <ion-item>
+          <h2>{{item.name}}</h2> <h1>{{item.amount}}</h1>
+          <p>{{item.date}}</p>
+        </ion-item>
+
+      
+        <ion-row >
+          <ion-col ion-item *ngFor="let share of item.shares" [ngClass]="share.member.id2">
+              <!-- <ion-icon name='person' class="custom-icon"  ></ion-icon> -->
+              <ion-icon name='person' [ngClass]="share.member.index"  ></ion-icon>
+              {{share.member.name}}
+              <p>{{share.amount}}</p>
+          </ion-col>
+        </ion-row>
+      
+      </ion-card>
+      
+      <ion-fab right bottom>
+          <button [disabled]="gdata.sheet.password == ''"  (click)="deleteMember()" ion-fab style="margin-right:20px; margin-bottom :20px" color="danger" ><ion-icon name="remove-circle"></ion-icon></button>
+        </ion-fab>
+
+</ion-content>

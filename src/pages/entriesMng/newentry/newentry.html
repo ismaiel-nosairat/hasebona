@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      New Entry
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="newEntryForm" (ngSubmit)="submitForm1(newEntryForm.value)"  *ngIf=" gdata.sheet.password != '' " >
+      <ion-item>
+        <ion-label floating>Purched Item:</ion-label>
+        <ion-input type="text" value="" [formControl]="newEntryForm.controls['name']" [ngClass]="{'error-border':!newEntryForm.controls['name'].valid}"></ion-input>
+      </ion-item>
+      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('required') && newEntryForm.controls['name'].touched">* name is required!</div>
+      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('minlength') && newEntryForm.controls['name'].touched">* Minimum name length is 2!</div>
+      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('maxlength') && newEntryForm.controls['name'].touched">* Maximum name length is 50!</div>
+      <ion-item>
+        <ion-label floating>Price:</ion-label>
+        <ion-input type="text" value="" [formControl]="newEntryForm.controls['amount']"></ion-input>
+      </ion-item>
+      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('required') && newEntryForm.controls['amount'].touched">* Price is required!</div>
+      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('pattern') && newEntryForm.controls['amount'].touched">* Not a valid number!</div>
+      <br/>
+      <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" value="" [formControl]="newEntryForm.controls['date']"></ion-datetime>
+      </ion-item>
+      <ion-list >
+        <ion-item>
+          <ion-label>Creditor:</ion-label>
+          <ion-select [formControl]="newEntryForm.controls['creditor']" interface="popover">
+              <ion-option *ngFor="let member of members" [value]="member.id">{{member.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+        <ion-list >
+          
+            <ion-label>Debtors:</ion-label>
+            <div style="border:1px solid rgb(218, 218, 218)">
+            <ion-item *ngFor="let item of ckList" >
+              <ion-label>{{item.name}}</ion-label>
+              <ion-checkbox [formControl]="newEntryForm.controls['debetors']" [(ngModel)]="item.isChecked" (click)="report()" ></ion-checkbox>
+            </ion-item>
+            </div>
+          </ion-list>
+
+      <button type="submit" ion-button full [disabled]="!newEntryForm.valid  || ! isCheckedForDebetors" >Submit</button>
+    </form>
+
+    <ion-label *ngIf=" gdata.sheet.password == '' ">
+      <h1>You don't have enough permission to user this service</h1>
+    </ion-label>
+
+  </ion-content>

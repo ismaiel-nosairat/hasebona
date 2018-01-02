@@ -1,0 +1,64 @@
+<!--
+  Generated template for the SigninPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="signinForm" (ngSubmit)="signin(signinForm.value)">
+    <ion-item>
+      <ion-label floating>Sheet ID:</ion-label>
+      <ion-input type="text" value="" [formControl]="signinForm.controls['id']" [ngClass]="{'error-border':!signinForm.controls['id'].valid}"></ion-input>
+    </ion-item>
+    <div class="error-box" *ngIf="signinForm.controls['id'].hasError('required') && signinForm.controls['id'].touched">* id is required!</div>
+    <div class="error-box" *ngIf="signinForm.controls['id'].hasError('maxlength') && signinForm.controls['id'].touched">* Maximum id length is 50!</div>
+    <ion-item>
+      <ion-label floating>Password:</ion-label>
+      <ion-input type="password" value="" [formControl]="signinForm.controls['password']"></ion-input>
+    </ion-item>
+    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('required') && signinForm.controls['password'].touched">* Password is required!</div>
+    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('minlength') && signinForm.controls['id'].touched">* Min password length is 3!</div>
+    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('maxlength') && signinForm.controls['id'].touched">* Maximum password length is 50!</div>
+    <br/>
+    <button type="submit" ion-button full [disabled]="!signinForm.valid" >Login</button>
+  </form>
+
+<!-- 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <ion-list>
+          <form (ngSubmit)="signin()">
+            <ion-item>
+              <ion-label>ID:</ion-label>
+              <ion-input fixed [(ngModel)]="login.id" name="id" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Password:</ion-label>
+              <ion-input fixed [(ngModel)]="login.password" name="password" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+            <button type="submit" block ion-button>Login</button>
+            </ion-item>
+          </form>
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+
+
+
+</ion-content>
