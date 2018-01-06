@@ -21,6 +21,8 @@ export class BackendProvider {
   deleteEntryUri: string;
   memberEntriesUri: any;
   signupUri;
+  clearUri;
+  deleteUri;
   signinUri;
   membersListUri;
   entriesListUri;
@@ -33,6 +35,8 @@ export class BackendProvider {
     this.serverhost = 'http://localhost:8080';
     this.signupUri = '/sheets/signup';
     this.signinUri = '/sheets/signin';
+    this.clearUri = '/sheets/clear';
+    this.deleteUri = '/sheets/delete';
     this.reportUri = '/sheets/report';
     this.membersListUri = '/members/list';
     this.entriesListUri = '/entries/list';
@@ -71,13 +75,34 @@ export class BackendProvider {
     return this.http.post(url, login);
   }
 
+  clearSheet(){
+    let url = this.serverhost + this.clearUri;
+    let sh = {
+      id: this.gdata.sheet.id,
+      password: this.gdata.sheet.password,
+      viewPassword: this.gdata.sheet.viewPassword
+    };
+    return this.http.post(url,sh,this.options);
+  }
+
+  deleteSheet(){
+    let url = this.serverhost + this.deleteUri;
+    let sh = {
+      id: this.gdata.sheet.id,
+      password: this.gdata.sheet.password,
+      viewPassword: this.gdata.sheet.viewPassword
+    };
+    return this.http.post(url,sh,this.options);
+  }
+
   ///////////////////////////////////////////////
 
   // -----------< Members>---------------------
 
+
   membersList(sheet) {
     let url = this.serverhost + this.membersListUri;
-    return this.http.post(url, sheet);
+    return this.http.post(url, { id: sheet.id, password: sheet.password, viewPassword: sheet.viewPassword }, this.options);
   }
 
   newMember(data) {
@@ -153,7 +178,7 @@ export class BackendProvider {
   //////////////////////////////////////////////////
 
 
-  
+
 
   loadDataSync(): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -230,7 +255,7 @@ export class BackendProvider {
 
 
   loadDataParaller(types): Promise<any> {
-    let methods: any[]=[];
+    let methods: any[] = [];
     if (types) types.forEach(t => {
       switch (t) {
         case this.gdata.GC.LOAD_MEMBERS: {
@@ -256,29 +281,40 @@ export class BackendProvider {
     return new Promise((resolve, reject) => {
       Promise.all(methods).then(
         (values) => {
-          //console.log(values);
+          console.log(values);
           resolve();
         },
         (err) => {
+          console.log(err);
+
           reject(err);
         }
       ).catch(err => {
+        console.log(err);
+
         reject(err);
       })
 
-    }).catch(err => {
-      console.log(err);
-    }
-      );
+    });
+    // .catch(err => {
+    //   console.log(err);
+    //   //reject(err);
+    // }
+    //   );
 
   }
 
   loadEntriesOnlyWithPromise(): Promise<any> {
     let url = this.serverhost + this.entriesListUri;
     return new Promise((resolve, reject) => {
-
-      this.http.post(url, this.gdata.sheet, this.options).subscribe(
+      let s = {
+        id: this.gdata.sheet.id,
+        password: this.gdata.sheet.password,
+        viewPassword: this.gdata.sheet.viewPassword
+      };
+      this.http.post(url, s, this.options).subscribe(
         (val) => {
+          console.log(val);
           this.gdata.entries = JSON.parse(val.text());
           this.gdata.entries.forEach(e => {
             e.date = new Date(e.date).toDateString();
@@ -300,9 +336,14 @@ export class BackendProvider {
   loadMembersOnlyWithPromise(): Promise<any> {
     let url = this.serverhost + this.membersListUri;
     return new Promise((resolve, reject) => {
-
-      this.http.post(url, this.gdata.sheet, this.options).subscribe(
+      let s = {
+        id: this.gdata.sheet.id,
+        password: this.gdata.sheet.password,
+        viewPassword: this.gdata.sheet.viewPassword
+      };
+      this.http.post(url, s, this.options).subscribe(
         (val) => {
+          
           this.gdata.members = JSON.parse(val.text());
           console.log(this.gdata.members);
           resolve("Done Members");
@@ -319,86 +360,48 @@ export class BackendProvider {
   loadReportOnlyWithPromise(): Promise<any> {
     let url = this.serverhost + this.reportUri;
     return new Promise((resolve, reject) => {
-
-      this.http.post(url, this.gdata.sheet, this.options).subscribe(
+      let s = {
+        id: this.gdata.sheet.id,
+        password: this.gdata.sheet.password,
+        viewPassword: this.gdata.sheet.viewPassword
+      };
+      this.http.post(url,s, this.options).subscribe(
         (val) => {
+          //console.log(val);
           this.gdata.report = JSON.parse(val.text());
-          let index=0;
-          let report=this.gdata.report;
-          let creditors:any[]=[];
-          let debtors:any[]=[];
-          let creditorsBalance:any[]=[];
-          let debtorsBalance:any[]=[];
-          report.members.forEach(m=>{
-            if (report.balances[index]>0){
-              creditors.push(m);
-              creditorsBalance.push(report.balances[index]);
-            }
-            else if (report.balances[index]<0){
-              debtors.push(m);
-              debtorsBalance.push(report.balances[index]);
-            }
-            index++;
-          });
-          this.gdata.creditors=creditors
-          this.gdata.debtors=debtors;
-          this.gdata.creditorsBalance=creditorsBalance;
-          this.gdata.debtorsBalance=debtorsBalance;
-          console.log(this.gdata.report);
-          console.log(this.gdata.creditors);
-          console.log(this.gdata.creditorsBalance);
-          console.log(this.gdata.debtors);
-          console.log(this.gdata.debtorsBalance);
-          
-          
-          
-          resolve("Done report");
-        },
-        (err) => {
-          console.log("Error in loadReportOnlyWithPromise");
-          reject(err);
-        }
-      );
-    });
-  }
+          //console.log(this.gdata.report);
+          if (this.gdata.report.balances.length > 0) {
+            let index = 0;
+            let report = this.gdata.report;
+            let creditors: any[] = [];
+            let debtors: any[] = [];
+            let creditorsBalance: any[] = [];
+            let debtorsBalance: any[] = [];
+            report.members.forEach(m => {
+              if (report.balances[index] > 0) {
+                creditors.push(m);
+                creditorsBalance.push(report.balances[index]);
+              }
+              else if (report.balances[index] < 0) {
+                debtors.push(m);
+                debtorsBalance.push(-1 * report.balances[index]);
+              }
+              index++;
+            });
+            this.gdata.creditors = creditors
+            this.gdata.debtors = debtors;
+            this.gdata.creditorsBalance = creditorsBalance;
+            this.gdata.debtorsBalance = debtorsBalance;
+            console.log(this.gdata.report);
+            console.log(this.gdata.creditors);
+            console.log(this.gdata.creditorsBalance);
+            console.log(this.gdata.debtors);
+            console.log(this.gdata.debtorsBalance);
 
-  loadReportOnlyWithPromise1(): Promise<any> {
-    let url = this.serverhost + this.reportUri;
-    return new Promise((resolve, reject) => {
 
-      this.http.post(url, this.gdata.sheet, this.options).subscribe(
-        (val) => {
-          this.gdata.report = JSON.parse(val.text());
-          let index=0;
-          let report=this.gdata.report;
-          let creditors:any[]=[];
-          let debtors:any[]=[];
-          let creditorsBalance:any[]=[];
-          let debtorsBalance:any[]=[];
-          report.members.forEach(m=>{
-            if (report.balances[index]>0){
-              creditors.push(m);
-              creditorsBalance.push(report.balances[index]);
-            }
-            else if (report.balances[index]<0){
-              debtors.push(m);
-              debtorsBalance.push(report.balances[index]);
-            }
-            index++;
-          });
-          this.gdata.creditors=creditors
-          this.gdata.debtors=debtors;
-          this.gdata.creditorsBalance=creditorsBalance;
-          this.gdata.debtorsBalance=debtorsBalance;
-          console.log(this.gdata.report);
-          console.log(this.gdata.creditors);
-          console.log(this.gdata.creditorsBalance);
-          console.log(this.gdata.debtors);
-          console.log(this.gdata.debtorsBalance);
-          
-          
-          
+          }
           resolve("Done report");
+
         },
         (err) => {
           console.log("Error in loadReportOnlyWithPromise");
@@ -410,4 +413,33 @@ export class BackendProvider {
 
 
 
-} 
+  generateColorsRGBA(num, shift): any[] {
+    let returnedArr: any[] = [];
+    for (let i = 0; i < num; i++) {
+      returnedArr.push(this.gdata.globalColorsRGBA[((i + shift) % this.gdata.globalColorsRGBA.length)]);
+    }
+    return returnedArr;
+  }
+
+  generateColorsHEX(num, shift): any[] {
+    let returnedArr: any[] = [];
+    for (let i = 0; i < num; i++) {
+      returnedArr.push(this.gdata.globalColorsHEX[((i + shift) % this.gdata.globalColorsHEX.length)]);
+    }
+    return returnedArr;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

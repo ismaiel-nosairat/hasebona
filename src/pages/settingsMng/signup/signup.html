@@ -1,15 +1,46 @@
-
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signin</ion-title>
+    <ion-title>signup</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
+
+
+  <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
+    <ion-item>
+      <ion-label floating>Sheet Name:</ion-label>
+      <ion-input type="text" value="" [formControl]="signupForm.controls['name']" ></ion-input>
+    </ion-item>
+    <div class="error-box" *ngIf="signupForm.controls['name'].hasError('required') && signupForm.controls['name'].touched">* name is required!</div>
+    <div class="error-box" *ngIf="signupForm.controls['name'].hasError('maxlength') && signupForm.controls['name'].touched">* Maximum name length is 50!</div>
+    <ion-item>
+      <ion-label floating>Password:</ion-label>
+      <ion-input type="password" value="" [formControl]="signupForm.controls['password']"></ion-input>
+    </ion-item>
+    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('required') && signupForm.controls['password'].touched">* Password is required!</div>
+    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('maxlength') && signupForm.controls['password'].touched">* Maximum password length is 50!</div>
+    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('minlength') && signupForm.controls['password'].touched">* Minimum password length is 3!</div>
+    <!-- <ion-item class='form-text error' *ngIf="signupForm.controls.password.touched && !signupForm.controls.password.valid">
+      <ion-label no-margin stacked wrap-text>Password must be between 6 and 12 characters with at least one capital letter, one small letter, and one digit.</ion-label>
+    </ion-item> -->
     
-      <ion-grid>
+    <ion-item>
+      <ion-label floating>Re-enter Password:</ion-label>
+      <ion-input type="password" [formControl]="signupForm.controls['confirmPassword']" ></ion-input>
+    </ion-item>
+    <div class="error-box" *ngIf="signupForm.controls.confirmPassword.touched && signupForm.hasError('mismatchedPasswords') && signupForm.controls.password.valid">Passwords do not match </div>
+
+    <br/>
+    <button type="submit" ion-button full [disabled]="!signupForm.valid">Login</button>
+  </form>
+
+
+
+  <!--     
+      <ion-grname>
         <ion-row>
           <ion-col>
     
@@ -36,7 +67,7 @@
     
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grname>
     
-    
-    </ion-content>
+     -->
+</ion-content>

@@ -49,11 +49,12 @@ export class SigninPage {
         //this.storage.set("sheet", JSON.stringify(value.text()));
         this.storage.set("sheet", value.text());
         this.gdata.sheet = JSON.parse(value.text());
-
+        this.gdata.sheet.date = new Date(this.gdata.sheet.date).toDateString();
+        
         let methods = [ this.gdata.GC.LOAD_MEMBERS,this.gdata.GC.LOAD_ENTRIES,this.gdata.GC.LOAD_REPORT];
         this.backend.loadDataParaller(methods).then(res => {
           this.loading.dismiss();
-          this.navCtrl.setRoot(TabsPage);
+          this.navCtrl.setRoot(TabsPage);  
         },
           (err) => {
             this.showFatalError(err);

@@ -4,6 +4,8 @@ import { Chart } from 'chart.js';
 import { BackendProvider } from '../../providers/backend/backend';
 import { AlertController, LoadingController, Loading } from 'ionic-angular';
 import { GlobaldataProvider } from '../../providers/globaldata/globaldata';
+import { ToastController } from 'ionic-angular';
+
 
 @Component({
     selector: 'page-home',
@@ -21,45 +23,53 @@ export class HomePage {
     debtorsChart: any;
     lineChart: any;
     loading: Loading;
-        report: any;
-        creditors: any[] = [];
-        debtors: any[] = [];
-        creditorsBalance: any[] = [];
-        debtorsBalance: any[] = [];
+    report: any;
+    creditors: any[];
+    debtors: any[] = [];
+    creditorsBalance: any[] = [];
+    debtorsBalance: any[] = [];
+    firstVisit: boolean;
+    isThereData: boolean = false;
 
 
+    constructor(
+        public navCtrl: NavController,
+        private backend: BackendProvider,
+        private gdata: GlobaldataProvider,
+        private loadingCtrl: LoadingController,
+        private toastCtrl: ToastController,
+        private alertCtrl: AlertController) {
 
 
-        constructor(
-            public navCtrl: NavController,
-            private backend: BackendProvider,
-            private gdata:GlobaldataProvider,
-            private loadingCtrl: LoadingController,
-            private alertCtrl: AlertController) {
+        this.report = gdata.report;
+        console.log(this.report);
+        this.creditors = gdata.creditors;
+        this.debtors = gdata.debtors;
+        this.creditorsBalance = gdata.creditorsBalance;
+        this.debtorsBalance = gdata.debtorsBalance;
+        this.firstVisit = true;
+
+        if (gdata.creditors.length > 0)
+            this.isThereData = true;
+    }
 
 
-            this.report = gdata.report;
-            console.log(this.report);
-            this.creditors = gdata.creditors;
-            this.debtors = gdata.debtors;
-            this.creditorsBalance = gdata.creditorsBalance;
-            this.debtorsBalance = gdata.debtorsBalance;
+    ionViewWillEnter() {
+    
+        console.log("will Enter" + this.firstVisit);
+        if (!this.firstVisit) {
+            this.refreshHomePage();
+
         }
+        this.firstVisit = false;
 
-        ionViewWillEnter(){
-            
-            console.log('to refresh');
-            this.creditorsChart.labels=(this.gdata.creditors);
-            this.creditorsChart.data.datasets.forEach((dataset) => {
-                    dataset.data=this.gdata.creditorsBalance;
-                });
-
-            
-        this.creditorsChart.update();
     }
     ionViewDidLoad() {
-        console.log('ionViewDidLoad');    
-        
+
+        console.log('ionViewDidLoad');
+        if (this.isThereData){
+        let colorArrRGB = this.backend.generateColorsRGBA(this.creditorsBalance.length, 3);
+        let colorArrHEX = this.backend.generateColorsHEX(this.creditorsBalance.length, 3);
         this.creditorsChart = new Chart(this.creditorsCanvas.nativeElement, {
             //Math.floor(Math.random() * (255 - 50 + 1)) + 50
             type: 'doughnut',
@@ -68,21 +78,24 @@ export class HomePage {
                 datasets: [{
                     label: 'Oqlaa',
                     data: this.creditorsBalance,
-                    backgroundColor:'rgba(255, 99, 132, 0.8)',
-                    hoverBackgroundColor:'#FF6384'
-                    
+                    backgroundColor: colorArrRGB,
+                    hoverBackgroundColor: colorArrHEX
+
                 }]
             },
-            
+
             options: {
                 legend: {
                     display: true,
-                    position:'left'
-                }}            
-            
+                    position: 'left'
+                }
+            }
+
 
         });
 
+        let colorArrRGB1 = this.backend.generateColorsRGBA(this.debtorsBalance.length, 0);
+        let colorArrHEX1 = this.backend.generateColorsHEX(this.debtorsBalance.length, 0);
         this.debtorsChart = new Chart(this.debtorsCanvas.nativeElement, {
             //Math.floor(Math.random() * (255 - 50 + 1)) + 50
             type: 'doughnut',
@@ -91,18 +104,19 @@ export class HomePage {
                 datasets: [{
                     label: 'Oqlaa',
                     data: this.debtorsBalance,
-                    backgroundColor:'rgba(54, 162, 235, 0.6',
-                    hoverBackgroundColor:'#36A2EB'
+                    backgroundColor: colorArrRGB1,
+                    hoverBackgroundColor: colorArrHEX1
                 }]
             },
             options: {
                 legend: {
                     display: true,
-                    position:'left'
-                }}            
+                    position: 'left'
+                }
+            }
         });
 
-        
+
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
             type: 'line',
@@ -135,7 +149,7 @@ export class HomePage {
             }
 
         });
-
+    }
     }
 
 
@@ -178,14 +192,115 @@ export class HomePage {
 
     doRefresh(refresher) {
         console.log('Begin async operation', refresher);
-    
+
         setTimeout(() => {
-          console.log('Async operation has ended');
-          refresher.complete();
+            console.log('Async operation has ended');
+            refresher.complete();
         }, 2000);
-      }
+    }
 
 
-    
+    refreshHomePage() {
+        //    let toast = this.presentToast();
+        //    toast.present();
+        this.backend.loadReportOnlyWithPromise().then(
+            res => {
+                if (this.gdata.creditors.length>0){
+                    this.isThereData=true;
+                console.log('to refresh');
+                this.creditorsChart.data.labels = this.gdata.creditors;
+                this.creditorsChart.data.datasets.forEach((dataset) => {
+                    dataset.data = this.gdata.creditorsBalance;
+                    console.log(dataset.data);
+                });
+                this.debtorsChart.data.labels = (this.gdata.debtors);
+                console.log(this.debtorsChart.labels);
+                this.debtorsChart.data.datasets.forEach((dataset) => {
+                    dataset.data = this.gdata.debtorsBalance;
+                    console.log(dataset.data);
+                });
+                this.creditorsChart.update();
+                this.debtorsChart.update();
+                this.isThereData=true;
+            }
+            else {
+                this.isThereData=false;
+            }
+            
+                //          toast.dismiss();
+            },
+            err => {
+                this.displayErrorToast(err);
+            }
+        ).catch(err => {
+            this.displayErrorToast(err);
+        })
+    }
+
+
+
+    refreshHomePage2() {
+        //    let toast = this.presentToast();
+        //    toast.present();
+        this.backend.loadReportOnlyWithPromise().then(
+            res => {
+                console.log('to refresh');
+
+                this.creditorsChart.labels = this.gdata.creditors;
+                console.log(this.creditorsChart.labels);
+                this.creditorsChart.data.datasets.forEach((dataset) => {
+                    dataset.data = this.gdata.creditorsBalance;
+                    console.log(dataset.data);
+                });
+                this.debtorsChart.labels = (this.gdata.debtors);
+                console.log(this.debtorsChart.labels);
+                this.debtorsChart.data.datasets.forEach((dataset) => {
+                    dataset.data = this.gdata.debtorsBalance;
+                    console.log(dataset.data);
+                });
+                this.creditorsChart.update();
+                this.debtorsChart.update();
+                //          toast.dismiss();
+            },
+            err => {
+                this.displayErrorToast(err);
+            }
+        ).catch(err => {
+            this.displayErrorToast(err);
+        })
+    }
+
+
+    presentToast() {
+        let toast = this.toastCtrl.create({
+            message: 'User was added successfully',
+            duration: 3000,
+            position: 'middle'
+        });
+
+        toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+        });
+        return toast;
+        //toast.present();
+
+    }
+
+
+    displayErrorToast(err) {
+        console.log(err);
+        let toast = this.toastCtrl.create({
+            message: 'Update data failed',
+            duration: 3000,
+            position: 'middle'
+        });
+
+        toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+        });
+        toast.present();
+
+    }
+
 
 }

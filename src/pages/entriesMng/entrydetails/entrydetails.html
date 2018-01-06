@@ -50,7 +50,8 @@
         <ion-col>
           <ion-icon name='person' [ngClass]="share.member.index"></ion-icon>
           {{share.member.name}}
-          <p>{{share.amount}}</p>
+          <!-- <p>{{share.amount}}</p> -->
+          <ion-badge item-end>{{share.amount}}</ion-badge>
         </ion-col>
       </ion-row>
     </ion-item>

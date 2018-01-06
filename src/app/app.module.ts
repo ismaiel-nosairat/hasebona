@@ -9,7 +9,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MembersPage } from '../pages/membersMng/members/members'
@@ -22,6 +21,7 @@ import { MemberdetailsPage } from '../pages/membersMng/memberdetails/memberdetai
 import { NewentryPage } from '../pages/entriesMng/newentry/newentry';
 import { EntriesPage } from '../pages/entriesMng/entries/entries';
 import { EntrydetailsPage } from '../pages/entriesMng/entrydetails/entrydetails';
+import { SettingsPage } from '../pages/settingsMng/settings/settings';
 
 
 
@@ -31,7 +31,7 @@ import { EntrydetailsPage } from '../pages/entriesMng/entrydetails/entrydetails'
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+    
     HomePage,
     TabsPage,
     WelcomePage,
@@ -41,7 +41,8 @@ import { EntrydetailsPage } from '../pages/entriesMng/entrydetails/entrydetails'
     MemberdetailsPage,
     NewentryPage,
     EntriesPage,
-    EntrydetailsPage
+    EntrydetailsPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +55,7 @@ import { EntrydetailsPage } from '../pages/entriesMng/entrydetails/entrydetails'
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+    
     HomePage,
     TabsPage,
     WelcomePage,
@@ -64,7 +65,8 @@ import { EntrydetailsPage } from '../pages/entriesMng/entrydetails/entrydetails'
     MemberdetailsPage,
     NewentryPage,
     EntriesPage,
-    EntrydetailsPage
+    EntrydetailsPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,

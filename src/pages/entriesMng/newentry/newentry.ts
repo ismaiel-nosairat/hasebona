@@ -222,7 +222,7 @@ export class NewentryPage {
     console.log(myEntry);
     this.backend.newEntry(myEntry).subscribe(
       res => {
-        let methods = [this.gdata.GC.LOAD_ENTRIES,this.gdata.GC.LOAD_REPORT];
+        let methods = [this.gdata.GC.LOAD_ENTRIES];
         this.backend.loadDataParaller(methods).then(
           (res) => {
             this.navCtrl.setRoot(EntriesPage);

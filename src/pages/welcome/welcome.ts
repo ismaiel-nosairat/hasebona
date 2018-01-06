@@ -31,6 +31,7 @@ export class WelcomePage {
       (res) => {
         if (res != null) {
           this.gdata.sheet = JSON.parse(res);
+          this.gdata.sheet.date = new Date(this.gdata.sheet.date).toDateString();
           let methods = [ this.gdata.GC.LOAD_MEMBERS,this.gdata.GC.LOAD_ENTRIES,this.gdata.GC.LOAD_REPORT];
           this.backend.loadDataParaller(methods).then(res => {
             console.log(res);

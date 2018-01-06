@@ -15,4 +15,77 @@
 
 <ion-content padding>
 
+
+  
+
+
+  <ion-list>
+    <h2>Sheet Information</h2>
+    <ion-item>
+      <ion-label fixed> ID:</ion-label>
+      <ion-input type="text" value="{{sheet.id}}"></ion-input>
+      <!-- {{Sheet.id}} -->
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Name:</ion-label>
+      <ion-input type="text" value="{{sheet.name}}"></ion-input>
+      <!-- {{Sheet.name}} -->
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Creation Date:</ion-label>
+      <ion-input type="text" value="{{sheet.date}}"></ion-input>
+      <!-- {{Sheet.date}} -->
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Password:</ion-label>
+      <ion-input type="{{type}}" value="{{sheet.password}}"></ion-input>
+      <!-- {{Sheet.password}} -->
+      <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
+      <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>  
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>View Only Password:</ion-label>
+      <ion-input type="{{typeView}}" value="{{sheet.viewPassword}}"></ion-input>
+      <!-- {{Sheet.viewPassword}} -->
+      <button *ngIf="!showViewPass" ion-button clear color="dark" type="button" item-right (click)="showViewPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
+    <button *ngIf="showViewPass" ion-button clear color="dark" type="button" item-right (click)="showViewPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>  
+    </ion-item>
+    
+  
+  </ion-list>
+
+  <h2>Options</h2>
+  <ion-list>
+      <ion-item>
+          Log out
+          <button ion-button (click)="logout()"   item-end style="width:45px"  icon-left>
+            <ion-icon name='log-out' is-active="false"></ion-icon>
+          </button>
+        </ion-item>
+    <ion-item>
+      Change Passwords
+      <button ion-button    item-end style="width:45px"  icon-left>
+        <ion-icon name='construct' is-active="false"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-item>
+      Clear All Entries
+      <button ion-button color="danger" (click)="showConfirm(0)"  style="width:45px" item-end icon-left>
+        <ion-icon name="backspace"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-item>
+      Delete Sheet
+      <button ion-button color="danger"  style="width:45px" (click)="showConfirm(1)" item-end icon-left>
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+
+  <button ion-button color="danger"  style="width:45px" (click)="test(1)" ></button>
+
 </ion-content>

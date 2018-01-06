@@ -15,7 +15,7 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-card>
+  <ion-card *ngIf='isThereData' >
     <ion-card-header>
       Creditors:
     </ion-card-header>
@@ -24,7 +24,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf='isThereData'>
     <ion-card-header>
       Debtors:
     </ion-card-header>
