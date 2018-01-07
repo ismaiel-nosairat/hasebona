@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { GlobaldataProvider } from '../../../providers/globaldata/globaldata';
 import { MemberdetailsPage } from '../memberdetails/memberdetails';
 import { TabsPage } from '../../tabs/tabs';
+import { MemberbalancePage } from '../memberbalance/memberbalance';
 /**
  * Generated class for the MembersPage page.
  *
@@ -43,7 +44,8 @@ export class MembersPage {
  
 
   showMemberDetails(member) {
-    this.navCtrl.push(MemberdetailsPage, { member: member });
+    //this.navCtrl.push(MemberdetailsPage, { member: member });
+    this.navCtrl.push(MemberbalancePage, { member: member });
   }
 
 

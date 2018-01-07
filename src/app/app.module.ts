@@ -23,6 +23,7 @@ import { EntriesPage } from '../pages/entriesMng/entries/entries';
 import { EntrydetailsPage } from '../pages/entriesMng/entrydetails/entrydetails';
 import { SettingsPage } from '../pages/settingsMng/settings/settings';
 import { ChangepasswordPage } from '../pages/settingsMng/changepassword/changepassword';
+import { MemberbalancePage } from '../pages/membersMng/memberbalance/memberbalance';
 
 
 
@@ -45,7 +46,8 @@ import { ChangepasswordPage } from '../pages/settingsMng/changepassword/changepa
     EntriesPage,
     EntrydetailsPage,
     SettingsPage,
-    ChangepasswordPage
+    ChangepasswordPage,
+    MemberbalancePage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { ChangepasswordPage } from '../pages/settingsMng/changepassword/changepa
     EntriesPage,
     EntrydetailsPage,
     SettingsPage,
-    ChangepasswordPage
+    ChangepasswordPage,
+    MemberbalancePage
   ],
   providers: [
     StatusBar,
