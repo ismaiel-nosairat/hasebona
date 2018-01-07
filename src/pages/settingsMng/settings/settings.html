@@ -61,31 +61,35 @@
   <ion-list>
       <ion-item>
           Log out
-          <button ion-button (click)="logout()"   item-end style="width:45px"  icon-left>
-            <ion-icon name='log-out' is-active="false"></ion-icon>
+          <button ion-button (click)="logout()" icon-left item-end>
+            <ion-icon name="log-out"></ion-icon>
+            Log out
           </button>
         </ion-item>
     <ion-item>
       Change Passwords
-      <button ion-button    item-end style="width:45px"  icon-left>
-        <ion-icon name='construct' is-active="false"></ion-icon>
+      <button ion-button (click)="changePassword()"    item-end   icon-left>
+        <ion-icon name='construct'></ion-icon>
+          Passwords
       </button>
     </ion-item>
     <ion-item>
       Clear All Entries
-      <button ion-button color="danger" (click)="showConfirm(0)"  style="width:45px" item-end icon-left>
+      <button ion-button color="danger" (click)="showConfirm(0)"   item-end icon-left>
         <ion-icon name="backspace"></ion-icon>
+        Clear
       </button>
     </ion-item>
     <ion-item>
       Delete Sheet
-      <button ion-button color="danger"  style="width:45px" (click)="showConfirm(1)" item-end icon-left>
+      <button ion-button color="danger"   (click)="showConfirm(1)" item-end icon-left>
         <ion-icon name="trash"></ion-icon>
+        Delete
       </button>
     </ion-item>
   </ion-list>
 
 
-  <button ion-button color="danger"  style="width:45px" (click)="test(1)" ></button>
+  
 
 </ion-content>

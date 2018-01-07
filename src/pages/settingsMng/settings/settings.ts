@@ -7,6 +7,7 @@ import { BackendProvider } from '../../../providers/backend/backend';
 import { Storage } from '@ionic/storage';
 import { WelcomePage } from '../../welcome/welcome';
 import { Loading } from 'ionic-angular/components/loading/loading';
+import { ChangepasswordPage } from '../changepassword/changepassword';
 /**
  * Generated class for the SettingsPage page.
  *
@@ -179,6 +180,10 @@ export class SettingsPage {
   test(x){
     console.log(x);
 
+  }
+
+  changePassword(){
+    this.navCtrl.push(ChangepasswordPage);
   }
 
 }

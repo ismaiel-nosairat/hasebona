@@ -22,6 +22,7 @@ export class BackendProvider {
   memberEntriesUri: any;
   signupUri;
   clearUri;
+  updateSheetUri;
   deleteUri;
   signinUri;
   membersListUri;
@@ -36,6 +37,7 @@ export class BackendProvider {
     this.signupUri = '/sheets/signup';
     this.signinUri = '/sheets/signin';
     this.clearUri = '/sheets/clear';
+    this.updateSheetUri='/sheets/update';
     this.deleteUri = '/sheets/delete';
     this.reportUri = '/sheets/report';
     this.membersListUri = '/members/list';
@@ -75,12 +77,24 @@ export class BackendProvider {
     return this.http.post(url, login);
   }
 
+  updateSheet(input){
+    let url = this.serverhost + this.updateSheetUri;
+
+    let info = {
+      id: this.gdata.sheet.id,
+      password: this.gdata.sheet.password,
+      newPassword:input.newPassword,
+      newViewPassword:input.newViewPassword
+    };
+
+    return this.http.post(url,info,this.options);
+  }
+
   clearSheet(){
     let url = this.serverhost + this.clearUri;
     let sh = {
       id: this.gdata.sheet.id,
       password: this.gdata.sheet.password,
-      viewPassword: this.gdata.sheet.viewPassword
     };
     return this.http.post(url,sh,this.options);
   }
