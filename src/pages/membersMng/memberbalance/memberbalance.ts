@@ -63,19 +63,14 @@ export class MemberbalancePage {
   entryDetails(item){
     let entryId=item.entryId;
     let entry:any;
-    this.gdata.entries.every(e =>{
-        console.log(e);
-        return (e.id==entryId);
+    this.gdata.entries.forEach(e=>{
+      if (e.id==entryId)
+        {
+          entry=e;
+        }
     });
-    console.log(entry);
     this.navCtrl.push(EntrydetailsPage, {entry: entry});
-    // this.gdata.entries.forEach(e=>{
-    //   if (e.id==entryId)
-    //     {
-    //       entry=e;
-    //     }
-    // })
-
+    
   }
 
 

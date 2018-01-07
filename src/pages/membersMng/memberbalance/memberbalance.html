@@ -37,7 +37,7 @@
 
   <ion-list *ngIf="report">
     <ion-item >
-      <ion-row *ngFor="let item of report.shares"  >
+      <ion-row *ngFor="let item of report.shares" (click)="entryDetails(item)" >
         <ion-col col-8>
         <div> <span class='innerEntryName'>  {{ item.entryName }}</span> </div>
         </ion-col>
