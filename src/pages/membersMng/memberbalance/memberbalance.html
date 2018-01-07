@@ -12,12 +12,50 @@
 
 </ion-header>
 
-<ion-list>
-    <ion-item *ngFor="let item of report.shares">
-      {{ item.entryName }} {{item.amount}}
-    </ion-item>
-  </ion-list>
 
 <ion-content padding>
 
+    <ion-grid *ngIf="report">
+        <ion-row>
+            <ion-col >
+                <p style="text-align: start">Member Name</p>
+            </ion-col>
+            <ion-col>
+                <p>Balance</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <h1>{{member.name}}</h1>
+            </ion-col>
+            <ion-col>
+                <h2 [ngClass]="report.balanceCss">{{report.balance}}</h2>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+  <ion-list *ngIf="report">
+    <ion-item >
+      <ion-row *ngFor="let item of report.shares"  >
+        <ion-col col-8>
+        <div> <span class='innerEntryName'>  {{ item.entryName }}</span> </div>
+        </ion-col>
+        <ion-col>
+          <div> 
+            <span [ngClass]='item.Css'> {{item.amount}} </span>
+           <ion-icon [name]="item.Icon" icon-end ></ion-icon>
+          </div>
+        </ion-col>
+        
+      </ion-row>
+
+    </ion-item>
+  </ion-list>
+
+
+
 </ion-content>
+
+
+<!-- <ion-icon [name]="item.icon"></ion-icon> -->

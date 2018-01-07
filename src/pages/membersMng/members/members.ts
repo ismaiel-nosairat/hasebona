@@ -44,8 +44,20 @@ export class MembersPage {
  
 
   showMemberDetails(member) {
-    //this.navCtrl.push(MemberdetailsPage, { member: member });
     this.navCtrl.push(MemberbalancePage, { member: member });
+    // this.backend.getMemberBalance(member.id).subscribe(
+    //   val=>{
+    //     console.log(val);
+    //     let balanceReport=JSON.parse(val.text());
+    //     console.log(balanceReport);
+    //     console.log(balanceReport.shares);
+    //     this.navCtrl.push(MemberbalancePage, { member: member, balanceReport:balanceReport });
+    //   },
+    //   err=>{
+    //     this.showError(err);
+    //   }
+    // );
+    
   }
 
 

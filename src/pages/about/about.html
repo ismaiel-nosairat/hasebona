@@ -8,48 +8,45 @@
 
 <ion-content padding>
     
-    <hr align="left" width="30%">
-    <form [formGroup]="newEntryForm" (ngSubmit)="submitForm(newEntryForm.value)">
-      <ion-item>
-        <ion-label floating>Purched Item:</ion-label>
-        <ion-input type="text" value="" [formControl]="newEntryForm.controls['name']" [ngClass]="{'error-border':!newEntryForm.controls['name'].valid}"></ion-input>
-      </ion-item><br/>
-      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('required') && newEntryForm.controls['name'].touched">* name is required!</div>
-      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('minlength') && newEntryForm.controls['name'].touched">* Minimum name length is 5!</div>
-      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('maxlength') && newEntryForm.controls['name'].touched">* Maximum name length is 10!</div>
-      <ion-item>
-        <ion-label floating>Price:</ion-label>
-        <ion-input type="text" value="" [formControl]="newEntryForm.controls['amount']"></ion-input>
-      </ion-item><br/>
-      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('required') && newEntryForm.controls['amount'].touched">* Username is required!</div>
-      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('minlength') && newEntryForm.controls['amount'].touched">* Minimum username length is 8!</div>
-      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('checkFirstCharacterValidatorOutput') && newEntryForm.controls['amount'].touched">* amount cant't start with number!</div><br/>
-      <ion-list>
-        <ion-item>
-          <ion-label>Creditor:</ion-label>
-          <ion-select [formControl]="newEntryForm.controls['creditor']" interface="popover">
-              <ion-option *ngFor="let member of members" [value]="member.id">{{member.name}}</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-list><br/>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-xl>
+            <div>1 of 3</div>
+          </ion-col>
+          <ion-col col-xl  >
+            <div>(wider)</div>
+          </ion-col>
+          <ion-col col-sm>
+            <div>3 of 3</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            <div>1 of 3 (wider)</div>
+          </ion-col>
+          <ion-col>
+            <div>2 of 3</div>
+          </ion-col>
+          <ion-col>
+            <div>3 of 3</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
 
-      <!-- <ion-list>
-          <ion-item>
-            <ion-label>Gender</ion-label>
-            <ion-select [formControl]="newEntryForm.controls['debetors']">
-              <ion-option value="e">Other</ion-option>
-              <ion-option *ngFor="let item of ckList" [value]="item.id">{{member.name}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-list><br/> -->
-   
-        <ion-list>
-            <ion-item *ngFor="let item of ckList">
-              <ion-label>{{item.name}}</ion-label>
-              <ion-checkbox [formControl]="newEntryForm.controls['debetors']" [(ngModel)]="item.isChecked" (click)="report()" ></ion-checkbox>
-            </ion-item>
-          </ion-list>
+      <ion-grid>
+          <ion-row>
+            <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+              This column will be 12 columns wide by default,
+              9 columns at the small breakpoint,
+              6 at the medium breakpoint, 4 at large, and 3 at xl.
+            </ion-col>
+            <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+                This column will be 12 columns wide by default,
+                9 columns at the small breakpoint,
+                6 at the medium breakpoint, 4 at large, and 3 at xl.
+              </ion-col>
+          </ion-row>
+        </ion-grid>
 
-      <button type="submit" ion-button full [disabled]="!newEntryForm.valid  || ! isCheckedForDebetors" >Submit</button>
-    </form>
-  </ion-content>
+</ion-content>

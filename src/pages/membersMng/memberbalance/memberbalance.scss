@@ -1,3 +1,24 @@
 page-memberbalance {
+    ion-col div {
+        background-color: #f0f5ff;
+        border: 1px solid #e6e9ee;
+        border-radius: 1px;
+        padding: 4px;
+        text-align: start;
+      }
+    
+      p {
+        padding: 10px 0 0 10px !important;
+        margin: 0;
+        text-align: start;
+      }
 
+      .positive{
+          color: green;
+      }
+      .negative{
+          color:red;
+      }
+
+      
 }
