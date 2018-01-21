@@ -33,14 +33,39 @@ $font-path: "../assets/fonts";
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+// $colors: (
+//   primary:    #488aff,
+//   secondary:  #32db64,
+//   danger:     #f53d3d,
+//   light:      #f4f4f4,
+//   dark:       #222,
+//   energy:      #f2b632
+// );
+
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #6499f5,
+  secondary:  #0377bb,
   danger:     #f53d3d,
-  light:      #f4f4f4,
+  light:      white,
   dark:       #222,
-  energy:      #f2b632
+  lightb: rgb(184, 219, 228),
+  color2: rgb(77, 180, 77),
+  color3:#66ff66
 );
+
+ $toolbar-md-background: color($colors,secondary);
+
+$tabs-md-background: color($colors,secondary);
+$tabs-md-tab-color: color($colors,light);
+$tabs-md-tab-color-active: color($colors,light);
+$tabs-md-tab-text-color: color($colors,light);
+$tabs-md-tab-icon-color:color($colors,light);
+$tabs-md-tab-icon-color-active:color($colors,color3);
+// $tabs-md-tab-icon-transform-x-active:-20;
+// $tabs-md-tab-icon-transform-z-active:-20;
+//$list-md-background-color: color($colors,lightb);
+//$list-md-text-color: color($colors,danger);
+
 
 
 // App iOS Variables
