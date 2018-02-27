@@ -1,73 +1,40 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>{{ 'SIGNUP.TITLE' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding id="main">
 
-
+<div id="signUp" >
   <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
     <ion-item>
-      <ion-label floating>Sheet Name:</ion-label>
+      <ion-label floating>{{ 'SIGNUP.SHEET_NAME' | translate }}:</ion-label>
       <ion-input type="text" value="" [formControl]="signupForm.controls['name']" ></ion-input>
     </ion-item>
-    <div class="error-box" *ngIf="signupForm.controls['name'].hasError('required') && signupForm.controls['name'].touched">* name is required!</div>
-    <div class="error-box" *ngIf="signupForm.controls['name'].hasError('maxlength') && signupForm.controls['name'].touched">* Maximum name length is 50!</div>
+    <div class="error-box" *ngIf="signupForm.controls['name'].hasError('required') && signupForm.controls['name'].touched">* {{ 'SIGNUP.ER_NAME_REQUIRED' | translate }}!</div>
+    <div class="error-box" *ngIf="signupForm.controls['name'].hasError('maxlength') && signupForm.controls['name'].touched">* {{ 'SIGNUP.ER_NAME_LENGTH_MAX' | translate }}!</div>
     <ion-item>
-      <ion-label floating>Password:</ion-label>
+      <ion-label floating>{{ 'SIGNUP.PASSWORD' | translate }}:</ion-label>
       <ion-input type="password" value="" [formControl]="signupForm.controls['password']"></ion-input>
     </ion-item>
-    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('required') && signupForm.controls['password'].touched">* Password is required!</div>
-    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('maxlength') && signupForm.controls['password'].touched">* Maximum password length is 50!</div>
-    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('minlength') && signupForm.controls['password'].touched">* Minimum password length is 3!</div>
+    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('required') && signupForm.controls['password'].touched">* {{ 'SIGNUP.ER_PASSWORD_REQUIRED' | translate }}!</div>
+    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('maxlength') && signupForm.controls['password'].touched">* {{ 'SIGNUP.ER_PASSWORD_LENGTH_MAX' | translate }}!</div>
+    <div class="error-box" *ngIf="signupForm.controls['password'].hasError('minlength') && signupForm.controls['password'].touched">* {{ 'SIGNUP.ER_PASSWORD_LENGTH_MIN' | translate }}!</div>
     <!-- <ion-item class='form-text error' *ngIf="signupForm.controls.password.touched && !signupForm.controls.password.valid">
       <ion-label no-margin stacked wrap-text>Password must be between 6 and 12 characters with at least one capital letter, one small letter, and one digit.</ion-label>
     </ion-item> -->
     
     <ion-item>
-      <ion-label floating>Re-enter Password:</ion-label>
+      <ion-label floating>{{ 'SIGNUP.CONFIRM_PASSWORD' | translate }}:</ion-label>
       <ion-input type="password" [formControl]="signupForm.controls['confirmPassword']" ></ion-input>
     </ion-item>
-    <div class="error-box" *ngIf="signupForm.controls.confirmPassword.touched && signupForm.hasError('mismatchedPasswords') && signupForm.controls.password.valid">Passwords do not match </div>
+    <div class="error-box" *ngIf="signupForm.controls.confirmPassword.touched && signupForm.hasError('mismatchedPasswords') && signupForm.controls.password.valid">{{ 'SIGNUP.ER_PASSWORD_NOT_MATCH' | translate }} </div>
 
     <br/>
-    <button type="submit" ion-button full [disabled]="!signupForm.valid">Login</button>
+    <button class='myBTN' type="submit" ion-button full [disabled]="!signupForm.valid">{{ 'SIGNUP.BTN_SIGNUP' | translate }}</button>
   </form>
-
-
-
-  <!--     
-      <ion-grname>
-        <ion-row>
-          <ion-col>
-    
-            <ion-list>
-              <form (ngSubmit)="signup()">
-              <ion-item>
-                <ion-label>Name:</ion-label>
-                <ion-input fixed [(ngModel)]="sheet.name" name="name" type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-label>Password:</ion-label>
-                  <ion-input fixed [(ngModel)]="sheet.password" name="password" type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Admin Password:</ion-label>
-                    <ion-input fixed [(ngModel)]="sheet.adminPassword" name="adminPassword" type="text"></ion-input>
-                  </ion-item>
-              <ion-item>
-                  
-                  <button type="submit" block    ion-button >Save</button>
-                  </ion-item>
-              </form> 
-            </ion-list>
-    
-          </ion-col>
-        </ion-row>
-      </ion-grname>
-    
-     -->
+</div>
 </ion-content>

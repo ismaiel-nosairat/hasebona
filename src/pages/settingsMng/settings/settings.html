@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>settings</ion-title>
+    <ion-title>{{'SETTINGS.TITLE' |translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,61 +20,77 @@
 
 
   <ion-list>
-    <h2>Sheet Information</h2>
+    <h2>{{'SETTINGS.SHEET_INFORMATION' |translate}}</h2>
     <ion-item>
-      <ion-label fixed> ID:</ion-label>
-      <ion-input type="text" value="{{sheet.id}}"></ion-input>
+      <ion-label fixed> {{'SETTINGS.ID' |translate}}:</ion-label>
+      <ion-input  type="text" [readonly]="true"  value="{{sheet.id}}"></ion-input>
       <!-- {{Sheet.id}} -->
     </ion-item>
     <ion-item>
-      <ion-label fixed>Name:</ion-label>
-      <ion-input type="text" value="{{sheet.name}}"></ion-input>
+      <ion-label fixed>{{'SETTINGS.NAME' |translate}}:</ion-label>      
+      <ion-input text-end type="text"  [readonly]="true"   value="{{sheet.name}}"></ion-input>
       <!-- {{Sheet.name}} -->
     </ion-item>
 
     <ion-item>
-      <ion-label fixed>Creation Date:</ion-label>
-      <ion-input type="text" value="{{sheet.date}}"></ion-input>
+      <ion-label fixed>{{'SETTINGS.CREATED' |translate}}:</ion-label>
+      <ion-input  type="text" [readonly]="true" value="{{sheet.date}}"></ion-input>
       <!-- {{Sheet.date}} -->
     </ion-item>
 
-    <ion-item>
-      <ion-label fixed>Password:</ion-label>
-      <ion-input type="{{type}}" value="{{sheet.password}}"></ion-input>
+    <ion-item >
+      <ion-label  style="min-width:60%"  fixed>{{'SETTINGS.PASSWORD' |translate}}:</ion-label>
+      <ion-input text-end  type="{{type}}" [readonly]="true" value="{{sheet.password}}"></ion-input>
       <!-- {{Sheet.password}} -->
       <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
       <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>  
     </ion-item>
 
     <ion-item>
-      <ion-label fixed>View Only Password:</ion-label>
-      <ion-input type="{{typeView}}" value="{{sheet.viewPassword}}"></ion-input>
+      <ion-label style="min-width:60%" fixed>{{'SETTINGS.VIEW_ONLY_PASSWORD' |translate}}:</ion-label>
+      <ion-input text-end type="{{typeView}}" [readonly]="true" value="{{sheet.viewPassword}}"></ion-input>
       <!-- {{Sheet.viewPassword}} -->
-      <button *ngIf="!showViewPass" ion-button clear color="dark" type="button" item-right (click)="showViewPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
+      <button  *ngIf="!showViewPass" ion-button clear color="dark" type="button" item-right (click)="showViewPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
     <button *ngIf="showViewPass" ion-button clear color="dark" type="button" item-right (click)="showViewPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>  
     </ion-item>
     
   
   </ion-list>
 
-  <h2>Options</h2>
+  <h2>{{'SETTINGS.OPTIONS' |translate}}</h2>
   <ion-list>
       <ion-item>
-          Log out
-          <button ion-button (click)="logout()" icon-left item-end>
+          <ion-label>{{'SETTINGS.LOGOUT' |translate}}</ion-label>
+          <button class="funtions" ion-button color="secondary" (click)="logout()" icon-left item-end>
             <ion-icon name="log-out"></ion-icon>
-            Log out
+            {{'SETTINGS.BTN_LOGOUT' |translate}}
           </button>
         </ion-item>
     <ion-item>
-      Change Passwords
-      <button ion-button (click)="changePassword()"    item-end   icon-left>
+        <ion-label>{{'SETTINGS.CHANGE_PASSWORDS' |translate}}</ion-label>
+      <button class="funtions" ion-button color="secondary" (click)="changePassword()"    item-end   icon-left>
         <ion-icon name='construct'></ion-icon>
-          Passwords
+        {{'SETTINGS.BTN_CHANGE_PASSWORDS' |translate}}
       </button>
     </ion-item>
+
     <ion-item>
-      Clear All Entries
+        <ion-label>{{'SETTINGS.APP_LANG' |translate}}</ion-label>
+        <ion-select  interface="popover" [(ngModel)]="appLang" multiple="false"  (ionChange)="onSelectChange($event)">
+          <ion-option>العربية</ion-option>
+          <ion-option>English</ion-option>
+        </ion-select>
+      </ion-item>
+
+
+  </ion-list>
+
+
+  
+
+</ion-content>
+    <!-- <ion-item>
+      Clear All Etries
       <button ion-button color="danger" (click)="showConfirm(0)"   item-end icon-left>
         <ion-icon name="backspace"></ion-icon>
         Clear
@@ -86,10 +102,4 @@
         <ion-icon name="trash"></ion-icon>
         Delete
       </button>
-    </ion-item>
-  </ion-list>
-
-
-  
-
-</ion-content>
+    </ion-item> -->

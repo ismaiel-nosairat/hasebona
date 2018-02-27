@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { GlobaldataProvider } from '../../../providers/globaldata/globaldata';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 import { WelcomePage } from '../../welcome/welcome';
 import { Loading } from 'ionic-angular/components/loading/loading';
 import { ChangepasswordPage } from '../changepassword/changepassword';
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the SettingsPage page.
  *
@@ -27,12 +28,25 @@ export class SettingsPage {
   public typeView = 'password';
   public showPass = false;
   public showViewPass = false;
+  public appLang: string;
 
-  constructor(private backend: BackendProvider, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private storage: Storage, private gdata: GlobaldataProvider) {
+  constructor(private backend: BackendProvider, public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private storage: Storage, private gdata: GlobaldataProvider, private platform: Platform,private translate :TranslateService) {
     this.sheet = gdata.sheet;
-
+    this.appLang = "العربية"
   }
 
+  onSelectChange(selectedValue: any) {
+    this.storage.set('lang', selectedValue);
+    //alert(selectedValue);
+    if (selectedValue == 'العربية') {
+      this.translate.setDefaultLang('ar');
+    }
+    else {
+      this.translate.setDefaultLang('en');
+    }
+
+
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
@@ -75,23 +89,23 @@ export class SettingsPage {
     });
   }
 
-  clearSheet(){
+  clearSheet() {
     this.showLoading();
-    this.backend.clearSheet().subscribe(res=>{
-        this.gdata.clearContent(false);
-        this.loading.dismiss(); 
+    this.backend.clearSheet().subscribe(res => {
+      this.gdata.clearContent(false);
+      this.loading.dismiss();
     },
-    err=>{
-      this.showError(err);
-    }
-  );
+      err => {
+        this.showError(err);
+      }
+    );
   }
 
-  deleteSheet(){
+  deleteSheet() {
     this.showLoading();
-    this.backend.deleteSheet().subscribe(res=>{
-        this.storage.clear().then(res=>{
-          this.gdata.clearContent(true);
+    this.backend.deleteSheet().subscribe(res => {
+      this.storage.clear().then(res => {
+        this.gdata.clearContent(true);
         this.gdata.sheet = null;
         //--->  To Hide the Tabs
         let elements = document.querySelectorAll(".tabbar");
@@ -102,15 +116,15 @@ export class SettingsPage {
         }
         //........
         this.navCtrl.setRoot(WelcomePage);
-        }).catch(err=>{
-          this.showError(err);    
-        });   
-        
+      }).catch(err => {
+        this.showError(err);
+      });
+
     },
-    err=>{
-      this.showError(err);
-    }
-  );
+      err => {
+        this.showError(err);
+      }
+    );
   }
 
   showLoading() {
@@ -134,14 +148,14 @@ export class SettingsPage {
   }
 
   showConfirm(x) {
-    let msgs=[
+    let msgs = [
       'Are you sure, this will clear all  entries of the Sheet?',
       'Are you sure, this will delete all you data?'
     ];
-    let titles=[
+    let titles = [
       'Delete Sheet?',
       'Clear Entries'
-    ]   ;
+    ];
     let confirm = this.alertCtrl.create({
       title: titles[x],
       message: msgs[x],
@@ -149,23 +163,23 @@ export class SettingsPage {
         {
           text: 'Cancel',
           handler: () => {
-           
+
             console.log('Disagree clicked');
           }
         },
         {
           text: 'Agree',
           handler: () => {
-            switch(x){
-              case 0:{
+            switch (x) {
+              case 0: {
                 this.clearSheet();
                 break;
               }
-              case 1:{
+              case 1: {
                 this.deleteSheet();
                 break;
               }
-              default:{
+              default: {
                 console.log("Invalid choose");
               }
             }
@@ -177,12 +191,12 @@ export class SettingsPage {
     confirm.present();
   }
 
-  test(x){
+  test(x) {
     console.log(x);
 
   }
 
-  changePassword(){
+  changePassword() {
     this.navCtrl.push(ChangepasswordPage);
   }
 

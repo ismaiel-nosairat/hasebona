@@ -5,6 +5,7 @@ import { BackendProvider } from '../../providers/backend/backend';
 import { AlertController, LoadingController, Loading } from 'ionic-angular';
 import { GlobaldataProvider } from '../../providers/globaldata/globaldata';
 import { ToastController } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -37,9 +38,11 @@ export class HomePage {
         private gdata: GlobaldataProvider,
         private loadingCtrl: LoadingController,
         private toastCtrl: ToastController,
-        private alertCtrl: AlertController) {
+        private alertCtrl: AlertController,
+        private translate:TranslateService
+    ) {
 
-
+        console.log(this.translate.getDefaultLang());
         this.report = gdata.report;
         console.log(this.report);
         this.creditors = gdata.creditors;

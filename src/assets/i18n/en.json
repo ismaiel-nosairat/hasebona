@@ -1,0 +1,192 @@
+{
+
+    "WELCOME":{
+        "TITLE":"Welcome To Hasebona App",
+        "TEXT1":"Hasebona",
+        "TEXT2":"Discover some intersting things",
+        "YOU_CAN":"You can start by",
+        "OR_YOU_CAN":"Or you can",
+        "BTN_SIGNUP":"New Accounting Sheet",
+        "BTN_SIGNIN":"Login to a Sheet"
+
+    },
+    "SIGNUP":{
+        "TITLE":"New Sheet",
+        "SHEET_NAME":"Sheet Name",
+        "ER_NAME_REQUIRED":"Name is requied",
+        "ER_NAME_LENGTH_MAX":"Maximum name length is 50",
+
+        "PASSWORD":"Password",
+        "ER_PASSWORD_REQUIRED":"Password is Required",
+        "ER_PASSWORD_LENGTH_MAX":"Maximum Password length is 50",
+        "ER_PASSWORD_LENGTH_MIN":"Minimum Password length is 3",
+
+        "CONFIRM_PASSWORD":"Password Confirmation",
+        "ER_PASSWORD_NOT_MATCH":"Passwords don't matches",
+
+        "BTN_SIGNUP":"Create Sheet"
+
+    },
+    "SIGNIN":{
+        "TITLE":"Login",
+        "SHEET_ID":"Sheet ID",
+        "ER_ID_REQUIRED":"Sheet ID is required",
+        "ER_ID_LENGTH_MAX":"",
+
+        "PASSWORD":"Password",
+        "ER_PASSWORD_REQUIRED":"Password is Required",
+        "ER_PASSWORD_LENGTH_MAX":"",
+        "ER_PASSWORD_LENGTH_MIN":"",
+
+        
+        "BTN_SIGNIN":"Login"
+
+    },
+    "TABS":{
+        "HOME":"Home",
+        "MEMBERS":"Members",
+        "ENTRIES":"Entries",
+        "SETTINGS":"Settings"
+    },
+    "HOME":{
+        "TITLE":"Home",
+
+        "PULLING_TEXT":"pull to refresh",
+        "REFRESHING_TEXT":"Refreshing...",
+
+        "CREDITORS":"Creditors",
+        "DEBTORS":"Debtors",
+
+        "TEXT":""
+    },
+    "MEMBERS":{
+        "TITLE":"Members",
+        "ALERT_ADD_MEMBER":{
+          "TITLE" :"New Member",
+          "MESSAGE":"Only letters or numbers, max 32 charachters",
+          "INPUTS":{
+            "NAME":"member",
+            "PLACEHOLDER":"e.g. 'Oqlaa'"
+          },
+          "BUTTONS":{
+            "TEXT":"ADD"
+          },
+          "ERRORS":{
+            "TITLE":"Must enter member name",
+            "MESSAGE":"Name cannot be empty, and cannot exceed 32 characters",
+            "TEXT":"OK"
+          }
+        },
+      
+
+        "BTN_NEW_MEMBER":""
+        
+    },
+    "MEMBER_BALANCE":{
+        "TITLE":"Member Balance",
+        "NAME":"Name",
+        "BALANCE":"Balance",
+        "DELETE_MEMBER":{
+            "BTN_TITLE":"Delete Member",
+            "ALET_TITLE":"Sure?",
+            "ALET_TEXT":"Are you sure you want to delete this member?",
+            "ALERT_OK":"Yes",
+            "ALERT_CANCLE":"Cancel"
+        }
+    },
+
+
+    "ENTRIES":{
+        "TITLE":"Entries",
+        "BTN_ADD_ENTRY":"New Entry"
+
+    },
+    "ENTRY_DETAILS":{
+        "TITLE":"Entry Details",
+        "DELETE_ENTRY":{
+           "BTN_TITLE":"Delete Entry",
+            "ALET_TITLE":"Sure?",
+            "ALET_TEXT":"Are you sure you want to delete this entry?",
+            "ALERT_OK":"Yes",
+            "ALERT_CANCLE":"Cancel"
+        }
+    },
+    "NEW_ENTRY":{
+    "TITLE":"New Entry",
+    "PURCHASED_ITEM":"Purchased Item",
+    "PRICE":"Price",
+    "DATE":"Date",
+    "CREDITOR":"How payed the money?",
+    "DEBTORS":"Consumers",
+    "SUBMIT":"SUBMIT",
+    "ERRORS":{
+        "FIELD_REQUIRED":"This field is required",
+        "MIN_LENGTH":"Minimum length is",
+        "MAX_LENGTH":"Maximum length is",
+        "CHARACTERS":"characters",
+        "INVALID_VALUE":"Invalid value"
+        
+        
+    }
+},
+    "SETTINGS":{
+        "TITLE":"Settings",
+        "SHEET_INFORMATION":"Sheet Information",
+        "ID":"ID",
+        "NAME":"Name",
+        "CREATED":"Created",
+        "PASSWORD":"Password",
+        "VIEW_ONLY_PASSWORD":"View Only Password",
+        "OPTIONS":"OPTIONS",
+        "LOGOUT":"Log out",
+        "BTN_LOGOUT":"Log out",
+        "CHANGE_PASSWORDS":"Change Passwords",
+        "BTN_CHANGE_PASSWORDS":"Passwords",
+        "DOWNLAOD_SHEET":"Download the Sheet",
+        "BTN_DOWNLAOD_SHEET":"Download",
+        "APP_LANG": "Application Language",
+        "ALERT":{
+            "BTN_TITLE":"",
+            "ALET_TITLE":"Confirmation",
+            "ALET_TEXT":"Are you Sure?",
+            "ALERT_OK":"OK",
+            "ALERT_CANCLE":"Cancel"
+        }
+
+    }
+,
+    "CHANGE_PASSWORDS":{
+        "TITLE": "Change Passwords",
+        "CURRENT_PASSWORD": "Current Password",
+        "NEW_PASSWORD": "New Password",
+        "CONFIRM_PASSWORD": "Re-enter New Password",
+        "VIEW_ONLY_PASSWORD": "View-only Password",
+        "ERRORS": {
+            "PASSWORD_REQUIRED": "Field is Required",
+            "PASSWORD_LENGTH_MAX": "Maximum length is",
+            "PASSWORD_LENGTH_MIN": "Minimum length is",
+            "PASSWORD_NOT_MATCH": "Passwords doesn't match",
+            "CHARACTERS":"characters",
+            "CURRENT_PASSWORD_NOT_CORRECT":"Current Password is not Correct"
+        },
+        "SAVE": "Save"
+    },
+
+    "SHOW_ERROR":{
+        "ALET_TITLE":"",
+        "ALET_TEXT":"",
+        "ALERT_OK":"",
+        "ALERT_CLOSE":"",
+        "ALERT_CANCLE":""
+    },
+
+    "GENERAL":{
+        "NO_ACCESS":"You don't have enough permission to user this service"
+    }
+
+
+
+
+
+
+}

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Members</ion-title>
+    <ion-title>{{ 'MEMBERS.TITLE' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,13 +16,13 @@
 
     <ion-list>
         <button ion-item *ngFor="let item of members" (click)="showMemberDetails(item)">
-          {{item.name}}
+          <h1>{{item.name}}</h1>
         </button>  
       </ion-list>
     
       
       <ion-fab right bottom>
-        <button [disabled]="gdata.sheet.password == ''"  (click)="addMember()" ion-fab style="margin-right:20px; margin-bottom :20px" color="positive" ><ion-icon name="add"></ion-icon></button>
+        <button [disabled]="gdata.sheet.password == ''"  (click)="addMember()" ion-fab color="secondary" ><ion-icon name="add"></ion-icon></button>
       </ion-fab>
    
 </ion-content>

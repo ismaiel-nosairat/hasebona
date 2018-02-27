@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      New Entry
+      {{ 'NEW_ENTRY.TITLE' | translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,26 +9,26 @@
 <ion-content padding>
     <form [formGroup]="newEntryForm" (ngSubmit)="submitForm1(newEntryForm.value)"  *ngIf=" gdata.sheet.password != '' " >
       <ion-item>
-        <ion-label floating>Purched Item:</ion-label>
+        <ion-label floating>{{ 'NEW_ENTRY.PURCHASED_ITEM' | translate}}:</ion-label>
         <ion-input type="text" value="" [formControl]="newEntryForm.controls['name']" [ngClass]="{'error-border':!newEntryForm.controls['name'].valid}"></ion-input>
       </ion-item>
-      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('required') && newEntryForm.controls['name'].touched">* name is required!</div>
-      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('minlength') && newEntryForm.controls['name'].touched">* Minimum name length is 2!</div>
-      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('maxlength') && newEntryForm.controls['name'].touched">* Maximum name length is 50!</div>
+      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('required') && newEntryForm.controls['name'].touched">* {{'NEW_ENTRY.ERRORS.FIELD_REQUIRED'|translate}}!</div>
+      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('minlength') && newEntryForm.controls['name'].touched">* {{'NEW_ENTRY.ERRORS.MIN_LENGTH'|translate}} 2 {{'NEW_ENTRY.ERRORS.CHARACTERS'|translate}}!</div>
+      <div class="error-box" *ngIf="newEntryForm.controls['name'].hasError('maxlength') && newEntryForm.controls['name'].touched">* {{'NEW_ENTRY.ERRORS.MAX_LENGTH'|translate}} 50 {{'NEW_ENTRY.ERRORS.CHARACTERS'|translate}}!</div>
       <ion-item>
-        <ion-label floating>Price:</ion-label>
+        <ion-label floating>{{ 'NEW_ENTRY.PRICE' | translate}}:</ion-label>
         <ion-input type="text" value="" [formControl]="newEntryForm.controls['amount']"></ion-input>
       </ion-item>
-      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('required') && newEntryForm.controls['amount'].touched">* Price is required!</div>
-      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('pattern') && newEntryForm.controls['amount'].touched">* Not a valid number!</div>
+      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('required') && newEntryForm.controls['amount'].touched">* {{'NEW_ENTRY.ERRORS.FIELD_REQUIRED'|translate}}!</div>
+      <div class="error-box" *ngIf="newEntryForm.controls['amount'].hasError('pattern') && newEntryForm.controls['amount'].touched">* {{'NEW_ENTRY.ERRORS.INVALID_VALUE'|translate}}!</div>
       <br/>
       <ion-item>
-        <ion-label>Date</ion-label>
+        <ion-label>{{ 'NEW_ENTRY.DATE' | translate}}:</ion-label>
         <ion-datetime displayFormat="MM/DD/YYYY" value="" [formControl]="newEntryForm.controls['date']"></ion-datetime>
       </ion-item>
       <ion-list >
         <ion-item>
-          <ion-label>Creditor:</ion-label>
+          <ion-label>{{ 'NEW_ENTRY.CREDITOR' | translate}}:</ion-label>
           <ion-select [formControl]="newEntryForm.controls['creditor']" interface="popover">
               <ion-option *ngFor="let member of members" [value]="member.id">{{member.name}}</ion-option>
           </ion-select>
@@ -36,7 +36,7 @@
       </ion-list>
         <ion-list >
           
-            <ion-label>Debtors:</ion-label>
+            <ion-label>{{ 'NEW_ENTRY.DEBTORS' | translate}}:</ion-label>
             <div style="border:1px solid rgb(218, 218, 218)">
             <ion-item *ngFor="let item of ckList" >
               <ion-label>{{item.name}}</ion-label>
@@ -45,11 +45,13 @@
             </div>
           </ion-list>
 
-      <button type="submit" ion-button full [disabled]="!newEntryForm.valid  || ! isCheckedForDebetors" >Submit</button>
+      <button type="submit" ion-button full [disabled]="!newEntryForm.valid  || ! isCheckedForDebetors" color="secondary" > 
+        {{ 'NEW_ENTRY.SUBMIT' | translate}}
+      </button>
     </form>
 
     <ion-label *ngIf=" gdata.sheet.password == '' ">
-      <h1>You don't have enough permission to user this service</h1>
+      <h1>{{ 'GENERAL,NO_ACCESS' | translate}}</h1>
     </ion-label>
 
   </ion-content>

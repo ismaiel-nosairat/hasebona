@@ -1,10 +1,10 @@
 <!-- <ion-tabs *ngIf="finish1 == ture and finish2 == ture"> -->
 <ion-tabs >
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Members" tabIcon="people"></ion-tab>
-  <ion-tab [root]="tab5Root" tabTitle="Entries" tabIcon="cart"></ion-tab>
-  <ion-tab [root]="tab6Root" tabTitle="Settings" tabIcon="settings"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle" ></ion-tab>
+  <ion-tab [root]="tab1Root" [tabTitle]="('TABS.HOME' | translate)"  tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab4Root" [tabTitle]="('TABS.MEMBERS' | translate)" tabIcon="people"></ion-tab>
+  <ion-tab [root]="tab5Root" [tabTitle]="('TABS.ENTRIES' | translate)" tabIcon="cart"></ion-tab>
+  <ion-tab [root]="tab6Root" [tabTitle]="('TABS.SETTINGS' | translate)" tabIcon="settings"></ion-tab>
+  <!-- <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle" ></ion-tab> -->
   
   
 </ion-tabs>

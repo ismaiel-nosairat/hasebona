@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, transition } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController, LoadingController, Loading } from 'ionic-angular';
 
@@ -8,6 +8,7 @@ import { SigninPage } from '../settingsMng/signin/signin';
 import { BackendProvider } from '../../providers/backend/backend';
 import { TabsPage } from '../tabs/tabs';
 import { GlobaldataProvider } from '../../providers/globaldata/globaldata';
+import { TranslateService } from '@ngx-translate/core';
 
 
 /**
@@ -25,14 +26,14 @@ import { GlobaldataProvider } from '../../providers/globaldata/globaldata';
 export class WelcomePage {
   loading: Loading;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public backend: BackendProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private gdata: GlobaldataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public backend: BackendProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private gdata: GlobaldataProvider, private translate: TranslateService) {
     this.showLoading();
     this.storage.get("sheet").then(
       (res) => {
         if (res != null) {
           this.gdata.sheet = JSON.parse(res);
           this.gdata.sheet.date = new Date(this.gdata.sheet.date).toDateString();
-          let methods = [ this.gdata.GC.LOAD_MEMBERS,this.gdata.GC.LOAD_ENTRIES,this.gdata.GC.LOAD_REPORT];
+          let methods = [this.gdata.GC.LOAD_MEMBERS, this.gdata.GC.LOAD_ENTRIES, this.gdata.GC.LOAD_REPORT];
           this.backend.loadDataParaller(methods).then(res => {
             console.log(res);
             this.navCtrl.push(TabsPage)
@@ -117,6 +118,15 @@ export class WelcomePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  test() {
+    if (this.translate.getDefaultLang() == 'en') {
+      this.translate.setDefaultLang('ar');
+    }
+    else{
+      this.translate.setDefaultLang('en');
+    }
   }
 
 }

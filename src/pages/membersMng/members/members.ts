@@ -7,6 +7,7 @@ import { GlobaldataProvider } from '../../../providers/globaldata/globaldata';
 import { MemberdetailsPage } from '../memberdetails/memberdetails';
 import { TabsPage } from '../../tabs/tabs';
 import { MemberbalancePage } from '../memberbalance/memberbalance';
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the MembersPage page.
  *
@@ -26,7 +27,7 @@ export class MembersPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams, private storage: Storage,
     public backend: BackendProvider, private alertCtrl: AlertController, private gdata: GlobaldataProvider,
-    private loadingCtrl: LoadingController) {
+    private loadingCtrl: LoadingController,private translate:TranslateService) {
 
     this.members = this.gdata.members;
   
@@ -106,48 +107,63 @@ export class MembersPage {
 
 
 private addMember() {
-  const addMemberAlert = this.alertCtrl.create({
-    title: "Create new Member",
-    message: "Only letters or numbers, max 32 charachters",
-    inputs: [{
-      name: "member",
-      placeholder: "e.g. 'Oqlaa'",
-      type: "text"
-    }]
-    ,
-    buttons: [{
-      text: "ADD",
-      handler: res => {
-        console.log(res.member.trim());
-        if (res.member.trim().length > 0 && res.member.trim().length < 50) {
-          //this._addBrand(data.brandNname)
-          this.showLoading();
-          this.backend.newMember(res.member.trim()).subscribe(
-            (val) => {
-              this.gdata.members.push(JSON.parse(val.text()));
-              console.log(this.gdata.members);
-              this.loading.dismiss();
-              //this.navCtrl.setRoot(TabsPage);
-            },
-            (err) => {
-              this.showError(err);
-            }
-          );
-        } else {
-          this._displayAlertEmptyMemberName()
-        }//end else
-      }
-    }]
-  })//end addMemberAlert.create
-  addMemberAlert.present();
-}; //end _displayAlerCreateFirstBrand
 
-private _displayAlertEmptyMemberName() {
+  this.translate.get('MEMBERS.ALERT_ADD_MEMBER').subscribe(
+    val => {
+
+
+      const addMemberAlert = this.alertCtrl.create({
+        title: val.TITLE,
+        message: val.MESSAGE,
+        inputs: [{
+          name: val.INPUTS.NAME,
+          placeholder: val.INPUTS.PLACEHOLDER,
+          type: "text"
+        }]
+        ,
+        buttons: [{
+          text: val.BUTTONS.TEXT,
+          handler: res => {
+            console.log(res.member.trim());
+            if (res.member.trim().length > 0 && res.member.trim().length < 50) {
+              //this._addBrand(data.brandNname)
+              this.showLoading();
+              this.backend.newMember(res.member.trim()).subscribe(
+                (val) => {
+                  this.gdata.members.push(JSON.parse(val.text()));
+                  console.log(this.gdata.members);
+                  this.loading.dismiss();
+                  //this.navCtrl.setRoot(TabsPage);
+                },
+                (err) => {
+                  this.showError(err);
+                }
+              );
+            } else {
+              this._displayAlertEmptyMemberName(val)
+            }//end else
+          }
+        }]
+      })//end addMemberAlert.create
+      addMemberAlert.present();
+    });
+     //end _displayAlerCreateFirstBrand
+    
+      
+
+
+    }
+  
+
+
+
+
+private _displayAlertEmptyMemberName(val) {
   const missingFirstBrandAlert = this.alertCtrl.create({
-    title: "Must enter member name",
-    message: "Name cannot be empty, and cannot exceed 32 characters",
+    title: val.ERRORS.TITLE,
+    message: val.ERRORS.MESSAGE,
     buttons: [{
-      text: "OK",
+      text: val.ERRORS.TEXT,
       handler: () => {
         this.addMember();
       }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>{{'HOME.TITLE' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,7 +17,7 @@
 
   <ion-card *ngIf='isThereData' >
     <ion-card-header>
-      Creditors:
+      {{'HOME.CREDITORS' | translate}}:
     </ion-card-header>
     <ion-card-content>
       <canvas #creditorsCanvas></canvas>
@@ -26,7 +26,7 @@
 
   <ion-card *ngIf='isThereData'>
     <ion-card-header>
-      Debtors:
+      {{'HOME.DEBTORS' | translate}}:
     </ion-card-header>
     <ion-card-content>
       <canvas #debtorsCanvas></canvas>

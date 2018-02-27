@@ -1,0 +1,161 @@
+{
+
+"WELCOME":{
+    "TITLE":"",
+    "TEXT_1":"",
+    "TEXT_2":"",
+    "BTN_SIGNUP":"",
+    "BTN_SIGNIN":"",
+
+},
+"SIGNUP":{
+    "TITLE":"",
+    "SHEET_NAME":"",
+    "ER_NAME_REQUIRED":"",
+    "ER_NAME_LENGTH_MAX":"",
+
+    "PASSWORD":"",
+    "ER_PASSWORD_REQUIRED":"",
+    "ER_PASSWORD_LENGTH_MAX":"",
+    "ER_PASSWORD_LENGTH_MIN":"",
+
+    "CONFIRM_PASSWORD":"",
+    "ER_PASSWORD_NOT_MATCH":"",
+
+    "BTN_SIGNUP":""
+
+},
+"SIGNIN":{
+    "TITLE":"",
+    "SHEET_ID":"",
+    "ER_ID_REQUIRED":"",
+    "ER_ID_LENGTH_MAX":"",
+
+    "PASSWORD":"",
+    "ER_PASSWORD_REQUIRED":"",
+    "ER_PASSWORD_LENGTH_MAX":"",
+    "ER_PASSWORD_LENGTH_MIN":"",
+
+    
+    "BTN_SIGNIN":""
+
+},
+"TABS":{
+    "HOME":"",
+    "MEMBERS":"",
+    "ENTRIES":"",
+    "SETTINGS":""
+},
+"HOME":{
+    "TITLE":"",
+
+    "PULLING_TEXT":"",
+    "REFRESHING_TEXT":"",
+
+    "CREDITORS":"",
+    "DEBTORS":"",
+
+    "TEXT":""
+},
+"MEMBERS":{
+    "TITLE":"",
+    "ALERT_ADD_MEMBER":{
+      "TITLE" :"",
+      "MESSAGE":"",
+      "INPUTS":{
+        "NAME":"",
+        "PLACEHOLDER":""
+      },
+      "BUTTONS":{
+        "TEXT":""
+      },
+      "ERRORS":{
+        "TITLE"
+        "MESSAGE"
+        "TEXT"
+      }
+    },
+  
+
+    "BTN_NEW_MEMBER":""
+    
+},
+"MEMBER_BALANCE":{
+    "TITLE":"",
+    "NAME":"",
+    "BALANCE":"",
+    "DELETE_MEMBER":{
+        "BTN_TITLE":"",
+        "ALET_TITLE":"",
+        "ALET_TEXT":"",
+        "ALERT_OK":"",
+        "ALERT_CANCLE":""
+    }
+},
+
+"ENTRIES":{
+    "TITLE":"",
+    "BTN_ADD_ENTRY":""
+
+},
+"ENTRY_DETAILS":{
+    "TITLE":"",
+    "DELETE_ENTRY":{
+        "BTN_TITLE":"",
+        "ALET_TITLE":"",
+        "ALET_TEXT":"",
+        "ALERT_OK":"",
+        "ALERT_CANCLE":""
+    }
+},
+"SETTIGS":{
+    "SHEET_INFORMATION":"",
+    "ID":"",
+    "NAME":"",
+    "CRAETED":"",
+    "PASSWORD":"",
+    "VIEW_ONLY_PASSWORD":"",
+    "OPTIONS":"",
+    "LOGOUT":"",
+    "CHANGE_PASSWORDS":"",
+    "DOWNLAOD_SHEET":"",
+    "ALERT":{
+        "BTN_TITLE":"",
+        "ALET_TITLE":"",
+        "ALET_TEXT":"",
+        "ALERT_OK":"",
+        "ALERT_CANCLE":""
+    }
+
+}
+,
+"CHANGE_PASSWORDS":{
+    "TITLE":"",
+    
+    "CURRENT_PASSWORD":"",
+    "NEW_PASSWORD":"",
+    "VIEW_ONLY_PASSWORD":"",
+
+    "ER_PASSWORD_REQUIRED":"",
+    "ER_PASSWORD_LENGTH_MAX":"",
+    "ER_PASSWORD_LENGTH_MIN":"",
+
+    "CONFIRM_PASSWORD":"",
+    "ER_PASSWORD_NOT_MATCH":"",
+
+    "SAVE":""
+
+},
+
+"SHOW_ERROR":{
+    "ALET_TITLE":"",
+    "ALET_TEXT":"",
+    "ALERT_OK":"",
+    "ALERT_CLOSE":"",
+    "ALERT_CANCLE":""
+}
+
+
+
+
+}

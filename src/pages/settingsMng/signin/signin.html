@@ -7,32 +7,32 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signin</ion-title>
+    <ion-title>{{ 'SIGNIN.TITLE' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content padding id="main">
+<div id="signIn"> 
     <form [formGroup]="signinForm" (ngSubmit)="signin(signinForm.value)">
     <ion-item>
-      <ion-label floating>Sheet ID:</ion-label>
+      <ion-label floating>{{ 'SIGNIN.SHEET_ID' | translate}}:</ion-label>
       <ion-input type="text" value="" [formControl]="signinForm.controls['id']" [ngClass]="{'error-border':!signinForm.controls['id'].valid}"></ion-input>
     </ion-item>
-    <div class="error-box" *ngIf="signinForm.controls['id'].hasError('required') && signinForm.controls['id'].touched">* id is required!</div>
-    <div class="error-box" *ngIf="signinForm.controls['id'].hasError('maxlength') && signinForm.controls['id'].touched">* Maximum id length is 50!</div>
+    <div class="error-box" *ngIf="signinForm.controls['id'].hasError('required') && signinForm.controls['id'].touched">* {{ 'SIGNIN.ER_ID_REQUIRED' | translate}}!</div>
+    <div class="error-box" *ngIf="signinForm.controls['id'].hasError('maxlength') && signinForm.controls['id'].touched">* {{ 'SIGNIN.ER_ID_LENGTH_MAX' | translate}}!</div>
     <ion-item>
-      <ion-label floating>Password:</ion-label>
+      <ion-label floating>{{ 'SIGNIN.PASSWORD' | translate}}:</ion-label>
       <ion-input type="password" value="" [formControl]="signinForm.controls['password']"></ion-input>
     </ion-item>
-    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('required') && signinForm.controls['password'].touched">* Password is required!</div>
-    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('minlength') && signinForm.controls['id'].touched">* Min password length is 3!</div>
-    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('maxlength') && signinForm.controls['id'].touched">* Maximum password length is 50!</div>
+    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('required') && signinForm.controls['password'].touched">* {{ 'SIGNIN.ER_PASSWORD_REQUIRED' | translate}}!</div>
+    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('minlength') && signinForm.controls['id'].touched">* {{ 'SIGNIN.ER_PASSWORD_LENGTH_MAX' | translate}}!</div>
+    <div class="error-box" *ngIf="signinForm.controls['password'].hasError('maxlength') && signinForm.controls['id'].touched">* {{ 'SIGNIN.ER_PASSWORD_LENGTH_MIN' | translate}}!</div>
     <br/>
-    <button type="submit" ion-button full [disabled]="!signinForm.valid" >Login</button>
+    <button class='myBTN' type="submit" ion-button full [disabled]="!signinForm.valid" >{{ 'SIGNIN.BTN_SIGNIN' | translate}}</button>
   </form>
-
+</div>
 <!-- 
   <ion-grid>
     <ion-row>

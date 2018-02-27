@@ -7,21 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>entrydetails</ion-title>
+    <ion-title>{{'ENTRY_DETAILS.TITLE' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>  
-    <ion-card>
+    
       <ion-row>
-        <ion-col>
-            <h2>{{entry.name}}</h2>
-        </ion-col>
-        <ion-col>
-
-        </ion-col>
+        <h3>{{entry.name}}</h3>
       </ion-row>
       <ion-row>
           <ion-col>
@@ -40,9 +35,6 @@
             </ion-col>
           </ion-row>
       <ion-item>
-        
-        
-
       </ion-item>
 
       <ion-item ion-item *ngFor="let share of entry.shares;let i = index">
@@ -55,8 +47,8 @@
         </ion-col>
       </ion-row>
     </ion-item>
-    </ion-card>
-    <ion-fab right bottom>
+    
+    <ion-fab left bottom>
         <button [disabled]="gdata.sheet.password == ''" (click)="deleteEntry()" ion-fab style="margin-right:20px; margin-bottom :20px" color="danger" >
           <ion-icon name="remove-circle"></ion-icon>
         </button>

@@ -50,7 +50,7 @@ export class NewentryPage {
     var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
 
     this.newEntryForm = fb.group({
-      'name': [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)])],
+      'name': [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])],
       'amount': ['0', Validators.compose([Validators.required, Validators.pattern('^[0-9]*\.?[0-9]+$')])],
       'date': [localISOTime, Validators.required],
       'creditor': [null, Validators.required],
@@ -96,7 +96,11 @@ export class NewentryPage {
       },
       shares: []
     };
-    let divi: number = -1 * (x.amount / debetorsNumber);
+    let metha=-1 * (x.amount / debetorsNumber);
+    let oqlaa=metha.toFixed(2);
+    let divi: number = parseFloat (oqlaa);
+    console.log(metha);
+    console.log(oqlaa);
     console.log(divi);
     this.ckList.forEach(c => {
       if (c.isChecked == true || c.id == x.creditor) {
@@ -177,7 +181,14 @@ export class NewentryPage {
       },
       shares: []
     };
-    let division: number = -1 * (x.amount / debetorsNumber);
+    let metha: number=-1 * (x.amount / debetorsNumber);
+    let oqlaa=metha.toFixed(3);
+    let division: number = parseFloat (oqlaa);
+    //let division: number = -1 * (x.amount / debetorsNumber);
+    //console.log(metha);
+    //console.log(oqlaa);
+    //console.log(division);
+    
     let CisD = false;
     this.ckList.forEach(c => {
       console.log('processing member with id=' + c.id);

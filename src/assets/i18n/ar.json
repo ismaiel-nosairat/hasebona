@@ -1,0 +1,161 @@
+{
+    "WELCOME": {
+        "TITLE": "حاسبونا",
+        "TEXT1": "حاسبونا",
+        "TEXT2": "بإمكان مساعدك الصغير تسجيل تعاملاتك المالية مع اصدقائك ",
+        "BTN_SIGNUP": "إنشاء ورقة حسابات جديدة",
+        "YOU_CAN":"يمكنك البدأ عن طريق",
+        "OR_YOU_CAN":"أو بإمكانك",
+        "BTN_SIGNIN": "تسجيل الدخول إلى ورقة حساب موجودة"
+    },
+    "SIGNUP": {
+        "TITLE": "ورقة جديدة",
+        "SHEET_NAME": "اسم الورقة",
+        "ER_NAME_REQUIRED": "الاسم مطلوب،يرجى ادخاله",
+        "ER_NAME_LENGTH_MAX": "طول الاسم الأعظمي هو 50 محرف",
+        "PASSWORD": "كلمة المرور",
+        "ER_PASSWORD_REQUIRED": "كلمة المرور مطلوبة،يرجى إدخالها",
+        "ER_PASSWORD_LENGTH_MAX": "طول كلمة المرور الأعظمي هو 50 محرف",
+        "ER_PASSWORD_LENGTH_MIN": "طول كلمة المرور الأدنى هو 3 محارف",
+        "CONFIRM_PASSWORD": "أعد إدخال كلمة المرور",
+        "ER_PASSWORD_NOT_MATCH": "كلمتا المرور غير متطابقتين",
+        "BTN_SIGNUP": "إنشاء ورقة الحسابات"
+    },
+    "SIGNIN": {
+        "TITLE": "تسجيل الدخول",
+        "SHEET_ID": "رقم الورقة",
+        "ER_ID_REQUIRED": "رقم الورقة مطلوب، يرجى إدخاله",
+        "ER_ID_LENGTH_MAX": "",
+        "PASSWORD": "كلمة المرور",
+        "ER_PASSWORD_REQUIRED": "كلمة المرور مطلوبة، يرجى إدخالها",
+        "ER_PASSWORD_LENGTH_MAX": "",
+        "ER_PASSWORD_LENGTH_MIN": "",
+        "BTN_SIGNIN": "تسجيل الدخول"
+    },
+    "TABS": {
+        "HOME": "عام",
+        "MEMBERS": "الأعضاء",
+        "ENTRIES": "المدفوعات",
+        "SETTINGS": "إعدادات"
+    },
+    "HOME": {
+        "TITLE": "الشاشة الأساسية",
+        "PULLING_TEXT": "اسحب للتحديث",
+        "REFRESHING_TEXT": "تحديث...",
+        "CREDITORS": "الدائنون",
+        "DEBTORS": "المدينون",
+        "TEXT": ""
+    },
+    "MEMBERS": {
+        "TITLE": "الأعضاء",
+        "ALERT_ADD_MEMBER": {
+            "TITLE": "عضو جديد",
+            "MESSAGE": "فقط محارف أو أرقام، 32 محرف بشكل أعظمي",
+            "INPUTS": {
+                "NAME": "member",
+                "PLACEHOLDER": "مثال :'زيد'"
+            },
+            "BUTTONS": {
+                "TEXT": "إضافة"
+            },
+            "ERRORS": {
+                "TITLE": "يجب إدخال اسم العضو",
+                "MESSAGE": "لايمكن أن يكون الاسم فارغاً ، أو أن يتجاوز 32 محرفاً",
+                "TEXT": "حسناً"
+            }
+        },
+        "BTN_NEW_MEMBER": "إضافة عضو جديد"
+    },
+    "MEMBER_BALANCE": {
+        "TITLE": "رصيد العضو",
+        "NAME": "الاسم",
+        "BALANCE": "الرصيد",
+        "DELETE_MEMBER": {
+            "BTN_TITLE": "حذف العضو",
+            "ALET_TITLE": "متأكد؟",
+            "ALET_TEXT": "هل أنت متأكد من أنك تريد حذف هذا العضو؟",
+            "ALERT_OK": "نعم",
+            "ALERT_CANCLE": " إلغاءالأمر"
+        }
+    },
+    "ENTRIES": {
+        "TITLE": "المشتريات",
+        "BTN_ADD_ENTRY": "تسجيلة جديدة"
+    },
+    "ENTRY_DETAILS": {
+        "TITLE": "تفاصيل التسجيلة",
+        "DELETE_ENTRY": {
+            "BTN_TITLE": "حذف التسجيلة",
+            "ALET_TITLE": "متأكد؟",
+            "ALET_TEXT": "هل أنت متأكد من أنك تريد حذف هذه التسجيلة",
+            "ALERT_OK": "نعم",
+            "ALERT_CANCLE": " إلغاء الأمر"
+        }
+    },
+    "NEW_ENTRY": {
+        "TITLE": "تسجيلة جديدة",
+        "PURCHASED_ITEM": "الغرض المشترى",
+        "PRICE": "السعر",
+        "DATE": "التاريخ",
+        "CREDITOR": "من قام بدفع الثمن؟",
+        "DEBTORS": "المستهلكون",
+        "SUBMIT": "حفظ",
+        "ERRORS": {
+            "FIELD_REQUIRED": "الحقل مطلوب",
+            "MIN_LENGTH": "الطول الأدنى للحقل هو ",
+            "MAX_LENGTH": "الطول الأقصى للحقل هو ",
+            "CHARACTERS": "محرف",
+            "INVALID_VALUE": "القيمة غير صالحة"
+        }
+    },
+    "SETTINGS": {
+        "TITLE": "الإعدادات",
+        "SHEET_INFORMATION": "معلومات ورقة الحساب",
+        "ID": "الرقم",
+        "NAME": "اسم الورقة",
+        "CREATED": "تاريخ انشائها",
+        "PASSWORD": "كلمة المرور",
+        "VIEW_ONLY_PASSWORD": "كلمةمرور للمشاهدة فقط",
+        "OPTIONS": "خيارات",
+        "LOGOUT": "تسجيل الخروج",
+        "BTN_LOGOUT": "خروج",
+        "CHANGE_PASSWORDS": "تغير كلمات المرور",
+        "BTN_CHANGE_PASSWORDS": "كلمات مرور",
+        "DOWNLAOD_SHEET": "تحميل الورقة",
+        "BTN_DOWNLAOD_SHEET": "تحميل",
+        "APP_LANG": "لغة التطبيق",
+        "ALERT": {
+            "BTN_TITLE": "",
+            "ALET_TITLE": "متأكد؟",
+            "ALET_TEXT": "هل أنت متأكد",
+            "ALERT_OK": "موافق",
+            "ALERT_CANCLE": "إلغاء الأمر"
+        }
+    },
+    "CHANGE_PASSWORDS": {
+        "TITLE": "تعديل كلمات المرور",
+        "CURRENT_PASSWORD": "كلمة المرور الحالية",
+        "NEW_PASSWORD": "كلمة المرور الجديدة",
+        "CONFIRM_PASSWORD": "أعد إدخال كلمة المرور",
+        "VIEW_ONLY_PASSWORD": "كلمة المرور (للمشاهدة فقط)",
+        "ERRORS": {
+            "PASSWORD_REQUIRED": "حقل مطلوب",
+            "PASSWORD_LENGTH_MAX": "الطول الاعظمي هو",
+            "PASSWORD_LENGTH_MIN": "الطول الأدنى هو",
+            "PASSWORD_NOT_MATCH": "كلمتا المرور غير متطابقتين",
+            "CHARACTERS":"محرف",
+            "CURRENT_PASSWORD_NOT_CORRECT":"كلمة المرور الحالية غير صحيحة"
+        },
+        "SAVE": "حفظ"
+    },
+    "SHOW_ERROR": {
+        "ALET_TITLE": "",
+        "ALET_TEXT": "",
+        "ALERT_OK": "",
+        "ALERT_CLOSE": "",
+        "ALERT_CANCLE": ""
+    },
+    "GENERAL": {
+        "NO_ACCESS": "You don't have enough permission to user this service"
+    }
+}

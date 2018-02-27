@@ -34,7 +34,8 @@ export class BackendProvider {
   options;
 
   constructor(public http: Http, private gdata: GlobaldataProvider) {
-    this.serverhost = 'http://localhost:8765';
+    //this.serverhost = 'http://localhost:8765';
+    this.serverhost = 'http://192.168.0.170:8765';
     this.signupUri = '/sheets/signup';
     this.signinUri = '/sheets/signin';
     this.clearUri = '/sheets/clear';

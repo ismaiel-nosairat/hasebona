@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Welcome To Hasebona App</ion-title>
+    <ion-title> <b>{{'WELCOME.TITLE' | translate }} </b> </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,8 +16,15 @@
 <ion-content padding id="welcome" >
 
   <!-- <img src="assets/imgs/welcome.jpg" class="logo"/> -->
-  <h1> Welcome to Hasebona </h1>
-  <div>Discover some intersting things</div>
-  <button ion-button block class="marginTop" (click)="signup()">New Accounting Sheet</button>
-  <button ion-button block color="lightprimary" (click)="signin()">Login to a Sheet</button>
+  <div class='myDiv'>
+  <h1> <b>{{'WELCOME.TEXT1' | translate }}</b> </h1>
+  <div>{{'WELCOME.TEXT2' | translate }}</div>
+</div>
+<div class='controls'>
+  <ion-label color="light" class="hints">{{'WELCOME.YOU_CAN' | translate }}</ion-label>
+  <button ion-button   block class='signUpBTN' (click)="signup()"> <b>  {{'WELCOME.BTN_SIGNUP' | translate }} </b></button>
+  <ion-label color="light" class="hints">{{'WELCOME.OR_YOU_CAN' | translate }}</ion-label>
+  <button ion-button class='signInBTN'  block color="lightprimary" (click)="signin()"><b>{{'WELCOME.BTN_SIGNIN' | translate }} </b></button>
+</div>
+  
 </ion-content>
